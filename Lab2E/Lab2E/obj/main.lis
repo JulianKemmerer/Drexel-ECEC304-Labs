@@ -1,0 +1,83 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bShadow::
+ 0000 00                .byte 0
+ 0001                   .dbfile Z:\Lab2E\Lab2E\main.c
+ 0001                   .dbsym e bShadow _bShadow c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\Lab2E\Lab2E\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\Lab2E\Lab2E\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 12
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern unsigned char bShadow =0;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 14
+ 0000           ; // enabling global interrupt
+ 0000           ; M8C_EnableGInt;
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 15
+ 0002           ;       PRT1DR=0;
+ 0002 620400            mov REG[0x4],0
+ 0005                   .dbline 16
+ 0005           ;       INT_MSK0 |=0b01000000;
+ 0005 43E040            or REG[0xe0],64
+ 0008           L2:
+ 0008                   .dbline 18
+ 0008           ;       while(1)
+ 0008           ;       {
+ 0008                   .dbline 19
+ 0008           ;               }
+ 0008           L3:
+ 0008                   .dbline 17
+ 0008 8FFF              xjmp L2
+ 000A           X0:
+ 000A                   .dbline -2
+ 000A           L1:
+ 000A                   .dbline 0 ; func end
+ 000A 8FFF              jmp .
+ 000C                   .dbend
+ 000C                   .dbfunc e SleepTimerISR _SleepTimerISR fV
+ 000C           _SleepTimerISR::
+ 000C                   .dbline -1
+ 000C 71C0              or F,-64
+ 000E 08                push A
+ 000F 5DD0              mov A,REG[0xd0]
+ 0011 08                push A
+ 0012                   .dbline 23
+ 0012           ;               }
+ 0012           ;       #pragma interrupt_handler SleepTimerISR
+ 0012           ;       void SleepTimerISR(void)
+ 0012           ;       {bShadow++;
+ 0012                   .dbline 23
+ 0012 62D000            mov REG[0xd0],>_bShadow
+ 0015 7600              inc [_bShadow]
+ 0017                   .dbline 24
+ 0017           ;       PRT1DR=bShadow;
+ 0017 5100              mov A,[_bShadow]
+ 0019 6004              mov REG[0x4],A
+ 001B                   .dbline -2
+ 001B           L5:
+ 001B 18                pop A
+ 001C 60D0              mov REG[208],A
+ 001E 18                pop A
+ 001F                   .dbline 0 ; func end
+ 001F 7E                reti
+ 0020                   .dbend

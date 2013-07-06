@@ -1,0 +1,18 @@
+XH
+H 1 areas 2 global symbols
+M sleeptimerroutines.asm
+S _bShadow Ref0000
+A text size 9 flags 0
+dbfile ./sleeptimerroutines.asm
+dbfunc 0 ? 0 I
+dbline 5 0
+dbline 6 1
+dbline 7 3
+dbline 8 5
+dbline 9 7
+dbline A 8
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S SleepTimerISR Def0000
+T 00 00 08 76 00 00 51 00 00 60 04 18 7E
+R 00 00 00 00 03 04 00 00 03 07 00 00

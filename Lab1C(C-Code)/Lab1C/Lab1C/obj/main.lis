@@ -1,0 +1,139 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile Z:\LAB1C(~1\Lab1C\Lab1C\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;        bShadow -> X+2
+ 0000           ;  bSwitchBefore -> X+1
+ 0000           ;        bSwitch -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3803              add SP,3
+ 0004                   .dbline 10
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 56
+ 0004           ;       /* With Debounce
+ 0004           ;       int bShadow, bTemp2, bTemp1, bTemp0, bSwitchOn;
+ 0004           ;       bShadow=0;
+ 0004           ;       bTemp1=0;
+ 0004           ;       bTemp2=0;
+ 0004           ;       bTemp0=0;
+ 0004           ;       bSwitchOn=0;
+ 0004           ;       PRT1DR=0;
+ 0004           ;       while(1)
+ 0004           ;       {
+ 0004           ;               bTemp2=bTemp1;  
+ 0004           ;               bTemp1=bTemp0;
+ 0004           ;               bTemp0= (PRT1DR & 0x01);
+ 0004           ;               
+ 0004           ;               if(bTemp0 == 0 && bTemp1 ==0 && bTemp2 ==0)
+ 0004           ;               {
+ 0004           ;               // yes
+ 0004           ;                       bSwitchOn = 0;
+ 0004           ;               }
+ 0004           ;               else
+ 0004           ;               {
+ 0004           ;               //no
+ 0004           ;                       if(bSwitchOn ==1)
+ 0004           ;                       {
+ 0004           ;                       //yes
+ 0004           ;                               //do nothing
+ 0004           ;                       }
+ 0004           ;                       else
+ 0004           ;                       {
+ 0004           ;                       //no
+ 0004           ;                               //Swtich just on
+ 0004           ;                               bSwitchOn = 1;
+ 0004           ;                               
+ 0004           ;                               //Increment leds
+ 0004           ;                               bShadow = bShadow + 2;
+ 0004           ;                               PRT1DR = (bShadow & 0x1e);
+ 0004           ;                       }
+ 0004           ;               }
+ 0004           ;       }//end while
+ 0004           ;       */
+ 0004           ;       
+ 0004           ;       
+ 0004           ;       
+ 0004           ;       //Without Debounce
+ 0004           ;       unsigned char bShadow, bSwitch, bSwitchBefore;
+ 0004           ;       bShadow=0;
+ 0004 560200            mov [X+2],0
+ 0007                   .dbline 57
+ 0007           ;       bSwitchBefore=0;
+ 0007 560100            mov [X+1],0
+ 000A                   .dbline 58
+ 000A           ;       bSwitch = 0;
+ 000A 560000            mov [X+0],0
+ 000D                   .dbline 59
+ 000D           ;       PRT1DR=0;
+ 000D 620400            mov REG[0x4],0
+ 0010 8021              xjmp L3
+ 0012           L2:
+ 0012                   .dbline 61
+ 0012           ;       while(1)
+ 0012           ;       {
+ 0012                   .dbline 63
+ 0012           ;               //Pressed =1, not pressed = 0
+ 0012           ;               bSwitch = (PRT1DR & 0x01);
+ 0012 5D04              mov A,REG[0x4]
+ 0014 62D000            mov REG[0xd0],>__r0
+ 0017 2101              and A,1
+ 0019 5400              mov [X+0],A
+ 001B                   .dbline 65
+ 001B           ;               
+ 001B           ;               if(bSwitchBefore == 0 && bSwitch ==1)
+ 001B 3D0100            cmp [X+1],0
+ 001E B00F              jnz L5
+ 0020 3D0001            cmp [X+0],1
+ 0023 B00A              jnz L5
+ 0025                   .dbline 66
+ 0025           ;               {
+ 0025                   .dbline 70
+ 0025           ;                       //Swtich just turned on
+ 0025           ;                       
+ 0025           ;                       //Increment leds
+ 0025           ;                       bShadow = bShadow + 2;
+ 0025 070202            add [X+2],2
+ 0028                   .dbline 71
+ 0028           ;                       PRT1DR = (bShadow & 0x1e);
+ 0028 5202              mov A,[X+2]
+ 002A 211E              and A,30
+ 002C 6004              mov REG[0x4],A
+ 002E                   .dbline 72
+ 002E           ;               }
+ 002E           L5:
+ 002E                   .dbline 75
+ 002E           ;               
+ 002E           ;               //record previous switch state
+ 002E           ;               bSwitchBefore = bSwitch;
+ 002E 5200              mov A,[X+0]
+ 0030 5401              mov [X+1],A
+ 0032                   .dbline 76
+ 0032           ;       }//end while
+ 0032           L3:
+ 0032                   .dbline 60
+ 0032 8FDF              xjmp L2
+ 0034           X0:
+ 0034                   .dbline -2
+ 0034           L1:
+ 0034 38FD              add SP,-3
+ 0036 20                pop X
+ 0037                   .dbline 0 ; func end
+ 0037 8FFF              jmp .
+ 0039                   .dbsym l bShadow 2 c
+ 0039                   .dbsym l bSwitchBefore 1 c
+ 0039                   .dbsym l bSwitch 0 c
+ 0039                   .dbend

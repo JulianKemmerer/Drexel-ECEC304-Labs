@@ -1,0 +1,78 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bShadow::
+ 0000 00                .byte 0
+ 0001                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2a\Lab2A\Lab2A\main.c
+ 0001                   .dbsym e bShadow _bShadow c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2a\Lab2A\Lab2A\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2a\Lab2A\Lab2A\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 10
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern unsigned char bShadow =0;
+ 0000           ; void main(void)
+ 0000           ; {PRT1DR=0;
+ 0000                   .dbline 10
+ 0000 620400            mov REG[0x4],0
+ 0003                   .dbline 11
+ 0003           ; OSC_CR0 |= 0b00010000;
+ 0003 7110              or F,0x10  ; iopage = 1
+ 0005 43E010            or REG[0xe0],16
+ 0008                   .dbline 12
+ 0008           ; OSC_CR0 &= 0b11110111;
+ 0008 41E0F7            and REG[0xe0],-9
+ 000B                   .dbline 13
+ 000B           ; OSC_CR0 &= 0b11111101;
+ 000B 41E0FD            and REG[0xe0],-3
+ 000E                   .dbline 14
+ 000E           ; OSC_CR0 |= 0b00000101;
+ 000E 43E005            or REG[0xe0],5
+ 0011 70CF              and F,0xCF      ; iopage = 0
+ 0013 8019              xjmp L3
+ 0015           L5:
+ 0015                   .dbline 16
+ 0015           ; while(1)
+ 0015           ; {while((INT_CLR0 & 0x40)==0);
+ 0015           L6:
+ 0015                   .dbline 16
+ 0015 5DDA              mov A,REG[0xda]
+ 0017 62D000            mov REG[0xd0],>__r0
+ 001A 5300              mov [__r0],A
+ 001C 470040            tst [__r0],64
+ 001F AFF5              jz L5
+ 0021                   .dbline 17
+ 0021           ;  INT_CLR0 = INT_CLR0 & ~0x40;
+ 0021 41DABF            and REG[0xda],-65
+ 0024                   .dbline 18
+ 0024           ;  bShadow++;
+ 0024 62D000            mov REG[0xd0],>_bShadow
+ 0027 7600              inc [_bShadow]
+ 0029                   .dbline 19
+ 0029           ;  PRT1DR=bShadow;
+ 0029 5100              mov A,[_bShadow]
+ 002B 6004              mov REG[0x4],A
+ 002D                   .dbline 20
+ 002D           ;  }
+ 002D           L3:
+ 002D                   .dbline 15
+ 002D 8FE7              xjmp L6
+ 002F           X0:
+ 002F                   .dbline -2
+ 002F           L1:
+ 002F                   .dbline 0 ; func end
+ 002F 8FFF              jmp .
+ 0031                   .dbend

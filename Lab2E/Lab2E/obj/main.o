@@ -1,0 +1,41 @@
+XH
+H 3 areas 3 global symbols
+M main.c
+A text size 20 flags 0
+dbfile ./main.c
+dbfile Z:\Lab2E\Lab2E\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline C 0
+dbline E 0
+dbline F 2
+dbline 10 5
+dbline 12 8
+dbline 13 8
+dbline 11 8
+dbline FFFFFFFE A
+dbline 0 A
+dbfunc e SleepTimerISR C fV
+dbline FFFFFFFF C
+dbline 17 12
+dbline 17 12
+dbline 18 17
+dbline FFFFFFFE 1B
+dbline 0 1F
+S _main Def0000
+S _SleepTimerISR Def000C
+A data size 1 flags 20
+dbfile ./main.c
+dbfile Z:\Lab2E\Lab2E\main.c
+dbsym e bShadow 0 c
+S _bShadow Def0000
+A data size 0 flags 20
+dbfile Z:\Lab2E\Lab2E\main.c
+T 00 00 00
+R 00 00 00 01
+T 00 00 71 01 62 04 00 43 E0 40 8F FF 8F FF 71 C0
+R 00 00 00 00
+T 00 0E 08 5D D0 08 62 D0 00 00 76 00 00 51 00 00
+R 00 00 00 00 41 08 00 01 01 0B 00 01 01 0E 00 01
+T 00 19 60 04 18 60 D0 18 7E
+R 00 00 00 00

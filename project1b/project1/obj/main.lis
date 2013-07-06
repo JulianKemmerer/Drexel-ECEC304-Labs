@@ -1,0 +1,220 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\project1\project1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 33
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; #define               LED_PORT                PRT0DR
+ 0000           ;               //Constant definition for the data port (Port 0) where the LED (LED1) resides.
+ 0000           ; 
+ 0000           ; #define               LED1_ON                 0x01
+ 0000           ;               //Constant definition to OR with the LED1_PORT to turn on the LED (LED1).
+ 0000           ; 
+ 0000           ; #define               LED1_OFF                0xFE
+ 0000           ;               //Constant definition to AND with the LED1_PORT to turn off the LED (LED1).
+ 0000           ; 
+ 0000           ; #define               LED2_ON                 0b10000
+ 0000           ; 
+ 0000           ; #define               LED2_OFF                0xEF
+ 0000           ; 
+ 0000           ; #define               LED3_ON                 0b100
+ 0000           ; 
+ 0000           ; #define               LED3_OFF                0xFB
+ 0000           ; 
+ 0000           ; #define               LED4_ON                 0b1000
+ 0000           ; 
+ 0000           ; #define               LED4_OFF                0xF7
+ 0000           ; 
+ 0000           ; unsigned char ucVR_ADCResult;
+ 0000           ;               //This global variable holds the converted output of the potentiometer (VR).
+ 0000           ; 
+ 0000           ; void main()
+ 0000           ; {
+ 0000                   .dbline 34
+ 0000           ;     M8C_EnableGInt;
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 37
+ 0002           ;           //Enables the Global Interrupt
+ 0002           ; 
+ 0002           ;       VR_PGA_Start(VR_PGA_HIGHPOWER);
+ 0002 10                push X
+ 0003 5003              mov A,3
+ 0005 7C0000            xcall _VR_PGA_Start
+ 0008 20                pop X
+ 0009                   .dbline 41
+ 0009           ;                       //Performs all required initialization for the PGA User Module and sets the power level for the PGA
+ 0009           ;                       //to high power (VR_PGA_HIGHPOWER).
+ 0009           ; 
+ 0009           ;       VR_ADC_Start(VR_ADC_HIGHPOWER);
+ 0009 10                push X
+ 000A 5003              mov A,3
+ 000C 7C0000            xcall _VR_ADC_Start
+ 000F 20                pop X
+ 0010                   .dbline 44
+ 0010           ;                       //Performs all required initialization for the VR_ADC User Module and sets the power level to high power.
+ 0010           ; 
+ 0010           ;       VR_ADC_GetSamples(0);
+ 0010 10                push X
+ 0011 5000              mov A,0
+ 0013 7C0000            xcall _VR_ADC_GetSamples
+ 0016 20                pop X
+ 0017 8065              xjmp L3
+ 0019           L2:
+ 0019                   .dbline 50
+ 0019           ;                       //Sets the VR_ADC to run continuously by providing a 0 in the paramater list.
+ 0019           ; 
+ 0019           ; 
+ 0019           ;     while(1)
+ 0019           ;               //infinte loop.
+ 0019           ;       {
+ 0019                   .dbline 51
+ 0019           ;               if (VR_ADC_fIsDataAvailable() != 0)
+ 0019 10                push X
+ 001A 7C0000            xcall _VR_ADC_fIsDataAvailable
+ 001D 62D000            mov REG[0xd0],>__r0
+ 0020 20                pop X
+ 0021 3900              cmp A,0
+ 0023 A059              jz L5
+ 0025                   .dbline 54
+ 0025           ;                               //This function checks the availability of sampled data.  The function returns a non-zero
+ 0025           ;                               //value if data has been converted and is ready to read.
+ 0025           ;               {
+ 0025                   .dbline 55
+ 0025           ;               ucVR_ADCResult = VR_ADC_bClearFlagGetData();
+ 0025 10                push X
+ 0026 7C0000            xcall _VR_ADC_bClearFlagGetData
+ 0029 20                pop X
+ 002A 62D000            mov REG[0xd0],>_ucVR_ADCResult
+ 002D 5300              mov [_ucVR_ADCResult],A
+ 002F                   .dbline 61
+ 002F           ;                               //This function clears the data ready flag and gets converted data as an unsigned char and
+ 002F           ;                               //stores it in the variable ucVR_ADCResult.   This function also checks to see that data-flag
+ 002F           ;                               //is still reset.   If not the data is retrieved again.   This makes sure that the ADC interrupt
+ 002F           ;                               //routine did not update the answer while it was being collected.
+ 002F           ; 
+ 002F           ;                       if (ucVR_ADCResult <= 64 )
+ 002F 5040              mov A,64
+ 0031 3A00              cmp A,[_ucVR_ADCResult]
+ 0033 C00F              jc L7
+ 0035           X1:
+ 0035                   .dbline 63
+ 0035           ;                               // Test to see if the potentiometer is less than 1/3 of the way up its 8-bit scale.
+ 0035           ;                       {
+ 0035                   .dbline 64
+ 0035           ;                         LED_PORT |= LED1_ON;
+ 0035 430001            or REG[0],1
+ 0038                   .dbline 65
+ 0038           ;                         LED_PORT &= LED2_OFF;
+ 0038 4100EF            and REG[0],-17
+ 003B                   .dbline 66
+ 003B           ;                         LED_PORT &= LED3_OFF;
+ 003B 4100FB            and REG[0],-5
+ 003E                   .dbline 67
+ 003E           ;                         LED_PORT &= LED4_OFF;
+ 003E 4100F7            and REG[0],-9
+ 0041                   .dbline 68
+ 0041           ;                       }
+ 0041 803B              xjmp L8
+ 0043           L7:
+ 0043                   .dbline 70
+ 0043           ; 
+ 0043           ;                       else if (ucVR_ADCResult <= 128)
+ 0043 62D000            mov REG[0xd0],>_ucVR_ADCResult
+ 0046 5080              mov A,-128
+ 0048 3A00              cmp A,[_ucVR_ADCResult]
+ 004A C00F              jc L9
+ 004C           X2:
+ 004C                   .dbline 71
+ 004C           ;                       { 
+ 004C                   .dbline 72
+ 004C           ;                         LED_PORT |= LED2_ON;
+ 004C 430010            or REG[0],16
+ 004F                   .dbline 73
+ 004F           ;                         LED_PORT &= LED1_OFF;
+ 004F 4100FE            and REG[0],-2
+ 0052                   .dbline 74
+ 0052           ;                         LED_PORT &= LED3_OFF;
+ 0052 4100FB            and REG[0],-5
+ 0055                   .dbline 75
+ 0055           ;                         LED_PORT &= LED4_OFF;
+ 0055 4100F7            and REG[0],-9
+ 0058                   .dbline 76
+ 0058           ;                       }
+ 0058 8024              xjmp L10
+ 005A           L9:
+ 005A                   .dbline 77
+ 005A           ;                       else if(ucVR_ADCResult <= 192)
+ 005A 62D000            mov REG[0xd0],>_ucVR_ADCResult
+ 005D 50C0              mov A,-64
+ 005F 3A00              cmp A,[_ucVR_ADCResult]
+ 0061 C00F              jc L11
+ 0063           X3:
+ 0063                   .dbline 78
+ 0063           ;                       {
+ 0063                   .dbline 79
+ 0063           ;                         LED_PORT |= LED3_ON;
+ 0063 430004            or REG[0],4
+ 0066                   .dbline 80
+ 0066           ;                         LED_PORT &= LED2_OFF;
+ 0066 4100EF            and REG[0],-17
+ 0069                   .dbline 81
+ 0069           ;                         LED_PORT &= LED1_OFF;
+ 0069 4100FE            and REG[0],-2
+ 006C                   .dbline 82
+ 006C           ;                         LED_PORT &= LED4_OFF;
+ 006C 4100F7            and REG[0],-9
+ 006F                   .dbline 83
+ 006F           ;                       }
+ 006F 800D              xjmp L12
+ 0071           L11:
+ 0071                   .dbline 85
+ 0071           ;                       else 
+ 0071           ;                       {
+ 0071                   .dbline 86
+ 0071           ;                         LED_PORT |= LED4_ON;
+ 0071 430008            or REG[0],8
+ 0074                   .dbline 87
+ 0074           ;                     LED_PORT &= LED3_OFF;
+ 0074 4100FB            and REG[0],-5
+ 0077                   .dbline 88
+ 0077           ;                     LED_PORT &= LED1_OFF;
+ 0077 4100FE            and REG[0],-2
+ 007A                   .dbline 89
+ 007A           ;                         LED_PORT &= LED2_OFF;
+ 007A 4100EF            and REG[0],-17
+ 007D                   .dbline 90
+ 007D           ;                       }
+ 007D           L12:
+ 007D           L10:
+ 007D           L8:
+ 007D                   .dbline 91
+ 007D           ;               }
+ 007D           L5:
+ 007D                   .dbline 93
+ 007D           ;               // end (VR_ADC_fIsDataAvailable() != 0)
+ 007D           ;       }
+ 007D           L3:
+ 007D                   .dbline 48
+ 007D 8F9B              xjmp L2
+ 007F           X0:
+ 007F                   .dbline -2
+ 007F           L1:
+ 007F                   .dbline 0 ; func end
+ 007F 8FFF              jmp .
+ 0081                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\project1\project1\main.c
+ 0000           _ucVR_ADCResult::
+ 0000 00                .byte 0
+ 0001                   .dbsym e ucVR_ADCResult _ucVR_ADCResult c

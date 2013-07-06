@@ -1,0 +1,97 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bShadow::
+ 0000 00                .byte 0
+ 0001                   .dbfile Z:\Lab2F\Lab2F\main.c
+ 0001                   .dbsym e bShadow _bShadow c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\Lab2F\Lab2F\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\Lab2F\Lab2F\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 12
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern unsigned char bShadow =0;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 13
+ 0000           ; M8C_EnableGInt; //Enable global interrupts
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 14
+ 0002           ; INT_MSK0 |=0b01000000;//Allow the sleep interrupt to be pending
+ 0002 43E040            or REG[0xe0],64
+ 0005                   .dbline 15
+ 0005           ; INT_MSK3 |= 0b10000000;//Enable software interrupts
+ 0005 43DE80            or REG[0xde],-128
+ 0008                   .dbline 17
+ 0008           ; 
+ 0008           ; PRT1DR=0;
+ 0008 620400            mov REG[0x4],0
+ 000B 8004              xjmp L3
+ 000D           L2:
+ 000D                   .dbline 22
+ 000D           ; 
+ 000D           ; 
+ 000D           ;       
+ 000D           ;       while(1)
+ 000D           ;       {
+ 000D                   .dbline 23
+ 000D           ;       INT_CLR0 |= 0b01000000;//Post the sleep interrupt
+ 000D 43DA40            or REG[0xda],64
+ 0010                   .dbline 24
+ 0010           ;       }
+ 0010           L3:
+ 0010                   .dbline 21
+ 0010 8FFC              xjmp L2
+ 0012           X0:
+ 0012                   .dbline -2
+ 0012           L1:
+ 0012                   .dbline 0 ; func end
+ 0012 8FFF              jmp .
+ 0014                   .dbend
+ 0014                   .dbfunc e SleepTimerISR _SleepTimerISR fV
+ 0014           _SleepTimerISR::
+ 0014                   .dbline -1
+ 0014 71C0              or F,-64
+ 0016 08                push A
+ 0017 5DD0              mov A,REG[0xd0]
+ 0019 08                push A
+ 001A                   .dbline 31
+ 001A           ; }
+ 001A           ;               
+ 001A           ;               
+ 001A           ;               
+ 001A           ;       #pragma interrupt_handler SleepTimerISR
+ 001A           ;       void SleepTimerISR(void)
+ 001A           ;       {
+ 001A                   .dbline 32
+ 001A           ;       bShadow++;
+ 001A 62D000            mov REG[0xd0],>_bShadow
+ 001D 7600              inc [_bShadow]
+ 001F                   .dbline 33
+ 001F           ;       PRT1DR=bShadow;
+ 001F 5100              mov A,[_bShadow]
+ 0021 6004              mov REG[0x4],A
+ 0023                   .dbline -2
+ 0023           L5:
+ 0023 18                pop A
+ 0024 60D0              mov REG[208],A
+ 0026 18                pop A
+ 0027                   .dbline 0 ; func end
+ 0027 7E                reti
+ 0028                   .dbend

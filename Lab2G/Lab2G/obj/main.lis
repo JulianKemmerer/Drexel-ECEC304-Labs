@@ -1,0 +1,163 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bShadow::
+ 0000 00                .byte 0
+ 0001                   .dbfile Z:\Lab2G\Lab2G\main.c
+ 0001                   .dbsym e bShadow _bShadow c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\Lab2G\Lab2G\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\Lab2G\Lab2G\main.c
+ 0000           _bCount::
+ 0000 00                .byte 0
+ 0001                   .dbsym e bCount _bCount c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\Lab2G\Lab2G\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\Lab2G\Lab2G\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 12
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern unsigned char bShadow =0;
+ 0000           ; 
+ 0000           ; extern unsigned char bCount=0;
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 13
+ 0000           ; M8C_EnableGInt; //Enable global interrupts
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 14
+ 0002           ; INT_MSK0 |=0b01000000;//Allow the sleep interrupt to be pending
+ 0002 43E040            or REG[0xe0],64
+ 0005                   .dbline 17
+ 0005           ; 
+ 0005           ; 
+ 0005           ; PRT1DR=0;
+ 0005 620400            mov REG[0x4],0
+ 0008 805B              xjmp L3
+ 000A           L2:
+ 000A                   .dbline 22
+ 000A           ; 
+ 000A           ; 
+ 000A           ;       
+ 000A           ;       while(1)
+ 000A           ;       {
+ 000A                   .dbline 23
+ 000A           ;       PRT1DR |= 0b00001111;
+ 000A 43040F            or REG[0x4],15
+ 000D                   .dbline 24
+ 000D           ;       bCount=255;
+ 000D 62D000            mov REG[0xd0],>_bCount
+ 0010 5500FF            mov [_bCount],-1
+ 0013           L5:
+ 0013                   .dbline 26
+ 0013           ;       while(bCount>0)
+ 0013           ;       {}
+ 0013                   .dbline 26
+ 0013           L6:
+ 0013                   .dbline 25
+ 0013 62D000            mov REG[0xd0],>_bCount
+ 0016 5000              mov A,0
+ 0018 3A00              cmp A,[_bCount]
+ 001A CFF8              jc L5
+ 001C           X1:
+ 001C                   .dbline 27
+ 001C           ;       PRT1DR &= 0b11110111;
+ 001C 4104F7            and REG[0x4],-9
+ 001F                   .dbline 28
+ 001F           ;       bCount=192;
+ 001F 62D000            mov REG[0xd0],>_bCount
+ 0022 5500C0            mov [_bCount],-64
+ 0025           L8:
+ 0025                   .dbline 30
+ 0025           ;       while(bCount>0)
+ 0025           ;       {}
+ 0025                   .dbline 30
+ 0025           L9:
+ 0025                   .dbline 29
+ 0025 62D000            mov REG[0xd0],>_bCount
+ 0028 5000              mov A,0
+ 002A 3A00              cmp A,[_bCount]
+ 002C CFF8              jc L8
+ 002E           X2:
+ 002E                   .dbline 31
+ 002E           ;       PRT1DR &=0b11111011;
+ 002E 4104FB            and REG[0x4],-5
+ 0031                   .dbline 32
+ 0031           ;       bCount=128;
+ 0031 62D000            mov REG[0xd0],>_bCount
+ 0034 550080            mov [_bCount],-128
+ 0037           L11:
+ 0037                   .dbline 34
+ 0037           ;       while(bCount>0)
+ 0037           ;       {}
+ 0037                   .dbline 34
+ 0037           L12:
+ 0037                   .dbline 33
+ 0037 62D000            mov REG[0xd0],>_bCount
+ 003A 5000              mov A,0
+ 003C 3A00              cmp A,[_bCount]
+ 003E CFF8              jc L11
+ 0040           X3:
+ 0040                   .dbline 35
+ 0040           ;       PRT1DR &= 0b11111101;
+ 0040 4104FD            and REG[0x4],-3
+ 0043                   .dbline 36
+ 0043           ;       bCount =64;
+ 0043 62D000            mov REG[0xd0],>_bCount
+ 0046 550040            mov [_bCount],64
+ 0049           L14:
+ 0049                   .dbline 38
+ 0049           ;       while(bCount>0)
+ 0049           ;       {}
+ 0049                   .dbline 38
+ 0049           L15:
+ 0049                   .dbline 37
+ 0049 62D000            mov REG[0xd0],>_bCount
+ 004C 5000              mov A,0
+ 004E 3A00              cmp A,[_bCount]
+ 0050 CFF8              jc L14
+ 0052           X4:
+ 0052                   .dbline 39
+ 0052           ;       PRT1DR &= 0b11111110;
+ 0052 4104FE            and REG[0x4],-2
+ 0055                   .dbline 40
+ 0055           ;       bCount =32;
+ 0055 62D000            mov REG[0xd0],>_bCount
+ 0058 550020            mov [_bCount],32
+ 005B           L17:
+ 005B                   .dbline 42
+ 005B           ; while(bCount>0)
+ 005B           ; {}
+ 005B                   .dbline 42
+ 005B           L18:
+ 005B                   .dbline 41
+ 005B 62D000            mov REG[0xd0],>_bCount
+ 005E 5000              mov A,0
+ 0060 3A00              cmp A,[_bCount]
+ 0062 CFF8              jc L17
+ 0064           X5:
+ 0064                   .dbline 43
+ 0064           ; }}
+ 0064           L3:
+ 0064                   .dbline 21
+ 0064 8FA5              xjmp L2
+ 0066           X0:
+ 0066                   .dbline -2
+ 0066           L1:
+ 0066                   .dbline 0 ; func end
+ 0066 8FFF              jmp .
+ 0068                   .dbend

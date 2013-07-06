@@ -1,0 +1,44 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile Z:\Lab3C\Lab3C\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 10
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 13
+ 0000           ;       // M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 0000           ;       // Insert your main routine code here.
+ 0000           ;       PWM8_1_Start();
+ 0000 10                push X
+ 0001 7C0000            xcall _PWM8_1_Start
+ 0004                   .dbline 14
+ 0004           ;       PWM8_2_Start();
+ 0004 7C0000            xcall _PWM8_2_Start
+ 0007 20                pop X
+ 0008           L2:
+ 0008                   .dbline 16
+ 0008           ;       while(1)
+ 0008           ;       {
+ 0008                   .dbline 17
+ 0008           ;       }
+ 0008           L3:
+ 0008                   .dbline 15
+ 0008 8FFF              xjmp L2
+ 000A           X0:
+ 000A                   .dbline -2
+ 000A           L1:
+ 000A                   .dbline 0 ; func end
+ 000A 8FFF              jmp .
+ 000C                   .dbend

@@ -1,0 +1,440 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area lit(rom, con, rel)
+ 0000           L2:
+ 0000 676F206561676C657300      .byte 'g,'o,32,'e,'a,'g,'l,'e,'s,0
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab4a\Lab4a\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;         length -> X+18
+ 0000           ;            str -> X+8
+ 0000           ;         rowpos -> X+6
+ 0000           ;            pos -> X+4
+ 0000           ;            row -> X+2
+ 0000           ;              i -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3814              add SP,20
+ 0004                   .dbline 48
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; 
+ 0004           ; 
+ 0004           ; /*void main(void)
+ 0004           ; {int i;
+ 0004           ; char str[]="go eagles";
+ 0004           ; LCD_Start();
+ 0004           ; LCD_Init();
+ 0004           ; while(1)
+ 0004           ;       {
+ 0004           ;       for(i=0;i<=7; i++)
+ 0004           ;               {while((INT_CLR0 & 0x40)== 0)
+ 0004           ;                       {
+ 0004           ;                       }
+ 0004           ; INT_CLR0= INT_CLR0 & ~0x40;
+ 0004           ; LCD_Position(0,i);
+ 0004           ; LCD_PrCString("go eagles");
+ 0004           ; LCD_Position(0,i-1);
+ 0004           ; LCD_PrCString(" ");
+ 0004           ; 
+ 0004           ;               }
+ 0004           ; for(i=0;i<=7; i++)
+ 0004           ; {while((INT_CLR0 & 0x40)== 0)
+ 0004           ; {
+ 0004           ; }
+ 0004           ; INT_CLR0= INT_CLR0 & ~0x40;
+ 0004           ; LCD_Position(1,i);
+ 0004           ; for(int j=9;j<=0;j--)
+ 0004           ; {LCD_PrString(str[j]);
+ 0004           ; }
+ 0004           ; //LCD_Position(1,i-1);
+ 0004           ; //LCD_PrCString(" ");
+ 0004           ; }
+ 0004           ; LCD_Init();
+ 0004           ; }
+ 0004           ; 
+ 0004           ; 
+ 0004           ;       // M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 0004           ;       // Insert your main routine code here.
+ 0004           ; }
+ 0004           ; */
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 49
+ 0004           ; char str[] ="go eagles";
+ 0004 62D000            mov REG[0xd0],>__r0
+ 0007 550000            mov [__r1],<L2
+ 000A 550000            mov [__r0],>L2
+ 000D 5A00              mov [__r3],X
+ 000F 060008            add [__r3],8
+ 0012 62D507            mov REG[0xd5],7
+ 0015 10                push X
+ 0016 550000            mov [__rX],0
+ 0019 5100              mov A,[__r0]
+ 001B 5800              mov X,[__r1]
+ 001D           X1:
+ 001D 08                push A
+ 001E 28                romx
+ 001F 62D000            mov REG[0xd0],>__r0
+ 0022 3F00              mvi [__r3],A
+ 0024 18                pop A
+ 0025 75                inc X
+ 0026 0900              adc A,0
+ 0028 7600              inc [__rX]
+ 002A 3C000A            cmp [__rX],10
+ 002D BFEF              jnz X1
+ 002F 20                pop X
+ 0030                   .dbline 50
+ 0030           ; int pos =0;
+ 0030 560500            mov [X+5],0
+ 0033 560400            mov [X+4],0
+ 0036                   .dbline 51
+ 0036           ; int row=0;
+ 0036 560300            mov [X+3],0
+ 0039 560200            mov [X+2],0
+ 003C                   .dbline 52
+ 003C           ; int rowpos=0;
+ 003C 560700            mov [X+7],0
+ 003F 560600            mov [X+6],0
+ 0042                   .dbline 53
+ 0042           ; int length =9;
+ 0042 561309            mov [X+19],9
+ 0045 561200            mov [X+18],0
+ 0048                   .dbline 54
+ 0048           ; int i=0;
+ 0048 560100            mov [X+1],0
+ 004B 560000            mov [X+0],0
+ 004E 81A1              xjmp L4
+ 0050           L3:
+ 0050                   .dbline 57
+ 0050           ; 
+ 0050           ;       while(1)
+ 0050           ;       {
+ 0050                   .dbline 60
+ 0050           ;               
+ 0050           ;               
+ 0050           ;               for (pos =0; pos<=31; pos++)
+ 0050 560500            mov [X+5],0
+ 0053 560400            mov [X+4],0
+ 0056           L6:
+ 0056                   .dbline 61
+ 0056           ;               {
+ 0056                   .dbline 62
+ 0056           ;                       if(pos==0)
+ 0056 3D0400            cmp [X+4],0
+ 0059 B01B              jnz L14
+ 005B 3D0500            cmp [X+5],0
+ 005E B016              jnz L14
+ 0060           X2:
+ 0060                   .dbline 63
+ 0060           ;                       {
+ 0060                   .dbline 64
+ 0060           ;                               LCD_Position(1,15);
+ 0060 10                push X
+ 0061 570F              mov X,15
+ 0063 5001              mov A,1
+ 0065 7C0000            xcall _LCD_Position
+ 0068 20                pop X
+ 0069                   .dbline 65
+ 0069           ;                               LCD_PrCString(" ");
+ 0069 10                push X
+ 006A 500A              mov A,>L12
+ 006C 08                push A
+ 006D 500A              mov A,<L12
+ 006F 5C                mov X,A
+ 0070 18                pop A
+ 0071 7C0000            xcall _LCD_PrCString
+ 0074 20                pop X
+ 0075                   .dbline 66
+ 0075           ;                       }
+ 0075           L13:
+ 0075                   .dbline 69
+ 0075           ;               
+ 0075           ;               
+ 0075           ;                       while((INT_CLR0 & 0x40)== 0){}
+ 0075                   .dbline 69
+ 0075           L14:
+ 0075                   .dbline 69
+ 0075 5DDA              mov A,REG[0xda]
+ 0077 62D000            mov REG[0xd0],>__r0
+ 007A 5300              mov [__r0],A
+ 007C 470040            tst [__r0],64
+ 007F AFF5              jz L13
+ 0081                   .dbline 70
+ 0081           ;                       INT_CLR0= INT_CLR0 & ~0x40;
+ 0081 41DABF            and REG[0xda],-65
+ 0084                   .dbline 72
+ 0084           ;                       
+ 0084           ;                       row =(pos-1)/16;
+ 0084 5205              mov A,[X+5]
+ 0086 1101              sub A,1
+ 0088 5300              mov [__r1],A
+ 008A 5204              mov A,[X+4]
+ 008C 1900              sbb A,0
+ 008E 5300              mov [__r0],A
+ 0090 5000              mov A,0
+ 0092 08                push A
+ 0093 5010              mov A,16
+ 0095 08                push A
+ 0096 5100              mov A,[__r0]
+ 0098 08                push A
+ 0099 5100              mov A,[__r1]
+ 009B 08                push A
+ 009C 7C0000            xcall __divmod_16X16_16
+ 009F 18                pop A
+ 00A0 5403              mov [X+3],A
+ 00A2 18                pop A
+ 00A3 5402              mov [X+2],A
+ 00A5 38FE              add SP,-2
+ 00A7                   .dbline 73
+ 00A7           ;                       rowpos =(pos-1) -(row*16);
+ 00A7 5203              mov A,[X+3]
+ 00A9 5300              mov [__r1],A
+ 00AB 5202              mov A,[X+2]
+ 00AD 5300              mov [__r0],A
+ 00AF 6500              asl [__r1]
+ 00B1 6B00              rlc [__r0]
+ 00B3 6500              asl [__r1]
+ 00B5 6B00              rlc [__r0]
+ 00B7 6500              asl [__r1]
+ 00B9 6B00              rlc [__r0]
+ 00BB 6500              asl [__r1]
+ 00BD 6B00              rlc [__r0]
+ 00BF 5205              mov A,[X+5]
+ 00C1 1101              sub A,1
+ 00C3 5300              mov [__r3],A
+ 00C5 5204              mov A,[X+4]
+ 00C7 1900              sbb A,0
+ 00C9 5300              mov [__r2],A
+ 00CB 5100              mov A,[__r3]
+ 00CD 1200              sub A,[__r1]
+ 00CF 5407              mov [X+7],A
+ 00D1 5100              mov A,[__r2]
+ 00D3 1A00              sbb A,[__r0]
+ 00D5 5406              mov [X+6],A
+ 00D7                   .dbline 74
+ 00D7           ;                       LCD_Position(row,rowpos);
+ 00D7 5207              mov A,[X+7]
+ 00D9 10                push X
+ 00DA 08                push A
+ 00DB 5203              mov A,[X+3]
+ 00DD 20                pop X
+ 00DE 7C0000            xcall _LCD_Position
+ 00E1 20                pop X
+ 00E2                   .dbline 75
+ 00E2           ;                       LCD_PrCString(" ");
+ 00E2 10                push X
+ 00E3 500A              mov A,>L12
+ 00E5 08                push A
+ 00E6 500A              mov A,<L12
+ 00E8 5C                mov X,A
+ 00E9 18                pop A
+ 00EA 7C0000            xcall _LCD_PrCString
+ 00ED 20                pop X
+ 00EE                   .dbline 77
+ 00EE           ;                       
+ 00EE           ;                       for (i=0; i<=length-1; i++)
+ 00EE 560100            mov [X+1],0
+ 00F1 560000            mov [X+0],0
+ 00F4 80C2              xjmp L19
+ 00F6           L16:
+ 00F6                   .dbline 78
+ 00F6           ;                       {
+ 00F6                   .dbline 79
+ 00F6           ;                               row =(pos+i)/16;
+ 00F6 62D000            mov REG[0xd0],>__r0
+ 00F9 5205              mov A,[X+5]
+ 00FB 0301              add A,[X+1]
+ 00FD 5300              mov [__r1],A
+ 00FF 5204              mov A,[X+4]
+ 0101 0B00              adc A,[X+0]
+ 0103 5300              mov [__r0],A
+ 0105 5000              mov A,0
+ 0107 08                push A
+ 0108 5010              mov A,16
+ 010A 08                push A
+ 010B 5100              mov A,[__r0]
+ 010D 08                push A
+ 010E 5100              mov A,[__r1]
+ 0110 08                push A
+ 0111 7C0000            xcall __divmod_16X16_16
+ 0114 18                pop A
+ 0115 5403              mov [X+3],A
+ 0117 18                pop A
+ 0118 5402              mov [X+2],A
+ 011A 38FE              add SP,-2
+ 011C                   .dbline 80
+ 011C           ;                               rowpos =(pos+i) -(row*16);
+ 011C 5203              mov A,[X+3]
+ 011E 5300              mov [__r1],A
+ 0120 5202              mov A,[X+2]
+ 0122 5300              mov [__r0],A
+ 0124 6500              asl [__r1]
+ 0126 6B00              rlc [__r0]
+ 0128 6500              asl [__r1]
+ 012A 6B00              rlc [__r0]
+ 012C 6500              asl [__r1]
+ 012E 6B00              rlc [__r0]
+ 0130 6500              asl [__r1]
+ 0132 6B00              rlc [__r0]
+ 0134 5205              mov A,[X+5]
+ 0136 0301              add A,[X+1]
+ 0138 5300              mov [__r3],A
+ 013A 5204              mov A,[X+4]
+ 013C 0B00              adc A,[X+0]
+ 013E 5300              mov [__r2],A
+ 0140 5100              mov A,[__r3]
+ 0142 1200              sub A,[__r1]
+ 0144 5407              mov [X+7],A
+ 0146 5100              mov A,[__r2]
+ 0148 1A00              sbb A,[__r0]
+ 014A 5406              mov [X+6],A
+ 014C                   .dbline 82
+ 014C           ;                               
+ 014C           ;                               if(row ==2)
+ 014C 3D0200            cmp [X+2],0
+ 014F B035              jnz L20
+ 0151 3D0302            cmp [X+3],2
+ 0154 B030              jnz L20
+ 0156           X3:
+ 0156                   .dbline 83
+ 0156           ;                               {
+ 0156                   .dbline 84
+ 0156           ;                                       LCD_Position(0,rowpos);
+ 0156 62D000            mov REG[0xd0],>__r0
+ 0159 5207              mov A,[X+7]
+ 015B 10                push X
+ 015C 08                push A
+ 015D 5000              mov A,0
+ 015F 20                pop X
+ 0160 7C0000            xcall _LCD_Position
+ 0163 20                pop X
+ 0164                   .dbline 85
+ 0164           ;                                       LCD_PrString(&str[i]);
+ 0164 62D000            mov REG[0xd0],>__r0
+ 0167 550007            mov [__r0],7
+ 016A 5A00              mov [__r1],X
+ 016C 060008            add [__r1],8
+ 016F 5201              mov A,[X+1]
+ 0171 0200              add A,[__r1]
+ 0173 5300              mov [__r1],A
+ 0175 5200              mov A,[X+0]
+ 0177 0A00              adc A,[__r0]
+ 0179 10                push X
+ 017A 08                push A
+ 017B 5100              mov A,[__r1]
+ 017D 5C                mov X,A
+ 017E 18                pop A
+ 017F 7C0000            xcall _LCD_PrString
+ 0182 20                pop X
+ 0183                   .dbline 86
+ 0183           ;                               }
+ 0183 802E              xjmp L21
+ 0185           L20:
+ 0185                   .dbline 88
+ 0185           ;                               else
+ 0185           ;                               {
+ 0185                   .dbline 89
+ 0185           ;                                       LCD_Position(row,rowpos);
+ 0185 62D000            mov REG[0xd0],>__r0
+ 0188 5207              mov A,[X+7]
+ 018A 10                push X
+ 018B 08                push A
+ 018C 5203              mov A,[X+3]
+ 018E 20                pop X
+ 018F 7C0000            xcall _LCD_Position
+ 0192 20                pop X
+ 0193                   .dbline 90
+ 0193           ;                                       LCD_PrString(&str[i]);
+ 0193 62D000            mov REG[0xd0],>__r0
+ 0196 550007            mov [__r0],7
+ 0199 5A00              mov [__r1],X
+ 019B 060008            add [__r1],8
+ 019E 5201              mov A,[X+1]
+ 01A0 0200              add A,[__r1]
+ 01A2 5300              mov [__r1],A
+ 01A4 5200              mov A,[X+0]
+ 01A6 0A00              adc A,[__r0]
+ 01A8 10                push X
+ 01A9 08                push A
+ 01AA 5100              mov A,[__r1]
+ 01AC 5C                mov X,A
+ 01AD 18                pop A
+ 01AE 7C0000            xcall _LCD_PrString
+ 01B1 20                pop X
+ 01B2                   .dbline 91
+ 01B2           ;                               }
+ 01B2           L21:
+ 01B2                   .dbline 92
+ 01B2           ;                       }
+ 01B2           L17:
+ 01B2                   .dbline 77
+ 01B2 7701              inc [X+1]
+ 01B4 0F0000            adc [X+0],0
+ 01B7           L19:
+ 01B7                   .dbline 77
+ 01B7 62D000            mov REG[0xd0],>__r0
+ 01BA 5213              mov A,[X+19]
+ 01BC 1101              sub A,1
+ 01BE 5300              mov [__r1],A
+ 01C0 5212              mov A,[X+18]
+ 01C2 1900              sbb A,0
+ 01C4 5300              mov [__r0],A
+ 01C6 5100              mov A,[__r1]
+ 01C8 1301              sub A,[X+1]
+ 01CA 5200              mov A,[X+0]
+ 01CC 3180              xor A,-128
+ 01CE 5300              mov [__rX],A
+ 01D0 5100              mov A,[__r0]
+ 01D2 3180              xor A,-128
+ 01D4 1A00              sbb A,[__rX]
+ 01D6 DF1F              jnc L16
+ 01D8           X4:
+ 01D8                   .dbline 93
+ 01D8           ;               }
+ 01D8           L7:
+ 01D8                   .dbline 60
+ 01D8 7705              inc [X+5]
+ 01DA 0F0400            adc [X+4],0
+ 01DD                   .dbline 60
+ 01DD 501F              mov A,31
+ 01DF 1305              sub A,[X+5]
+ 01E1 5204              mov A,[X+4]
+ 01E3 3180              xor A,-128
+ 01E5 62D000            mov REG[0xd0],>__r0
+ 01E8 5300              mov [__rX],A
+ 01EA 5080              mov A,(0 ^ 0x80)
+ 01EC 1A00              sbb A,[__rX]
+ 01EE DE67              jnc L6
+ 01F0           X5:
+ 01F0                   .dbline 94
+ 01F0           ;       }
+ 01F0           L4:
+ 01F0                   .dbline 56
+ 01F0 8E5F              xjmp L3
+ 01F2           X0:
+ 01F2                   .dbline -2
+ 01F2           L1:
+ 01F2 38EC              add SP,-20
+ 01F4 20                pop X
+ 01F5                   .dbline 0 ; func end
+ 01F5 8FFF              jmp .
+ 01F7                   .dbsym l length 18 I
+ 01F7                   .dbsym l str 8 A[10:10]c
+ 01F7                   .dbsym l rowpos 6 I
+ 01F7                   .dbsym l pos 4 I
+ 01F7                   .dbsym l row 2 I
+ 01F7                   .dbsym l i 0 I
+ 01F7                   .dbend
+                        .area lit(rom, con, rel)
+ 000A           L12:
+ 000A 2000              .byte 32,0

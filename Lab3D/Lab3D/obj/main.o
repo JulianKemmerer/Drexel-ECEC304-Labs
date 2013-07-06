@@ -1,0 +1,71 @@
+XH
+H 3 areas A global symbols
+M main.c
+S _LCD_1_Start Ref0000
+S __r0 Ref0000
+S _PWM8_1_bReadPulseWidth Ref0000
+S _LCD_1_Position Ref0000
+S _PWM8_1_Start Ref0000
+S _PWM8_1_WritePulseWidth Ref0000
+S _LCD_1_PrHexByte Ref0000
+S _LCD_1_Init Ref0000
+A text size 7C flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline A 0
+dbline D 0
+dbline E 4
+dbline F 7
+dbline 10 B
+dbline 11 13
+dbline 15 1C
+dbline 16 1C
+dbline 14 1C
+dbline 17 28
+dbline 1A 2B
+dbline 1B 30
+dbline 1C 33
+dbline 1E 4C
+dbline 1F 51
+dbline 20 51
+dbline 21 65
+dbline 22 6C
+dbline 23 78
+dbline 24 78
+dbline 12 78
+dbline FFFFFFFE 7A
+dbline 0 7A
+S _main Def0000
+A data size 1 flags 20
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+dbsym e bSwitchState 0 c
+S _bSwitchState Def0000
+A data size 0 flags 20
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+T 00 00 00
+R 00 00 00 01
+T 00 00 10 7C 00 00 7C 00 00 7C 00 00 20 10 50 00
+R 00 00 00 00 02 04 00 04 02 07 00 00 02 0A 00 07
+T 00 0E 5C 7C 00 00 20 10 50 80 7C 00 00 20 80 5D
+R 00 00 00 00 02 04 00 03 02 0B 00 06
+T 00 1C 5D DA 62 D0 00 00 53 00 00 47 00 00 40 AF
+R 00 00 00 00 43 06 00 01 03 09 00 01 03 0C 00 01
+T 00 27 F5 41 DA BF 62 D0 00 00 65 00 00 26 00 00
+R 00 00 00 00 41 08 00 01 01 0B 00 01 01 0E 00 01
+T 00 32 70 5D 04 62 D0 00 00 53 00 00 26 00 00 08
+R 00 00 00 00 43 07 00 01 03 0A 00 01 03 0D 00 01
+T 00 3D 62 D0 00 00 51 00 00 62 D0 00 00 2A
+R 00 00 00 00 41 04 00 01 01 07 00 01 43 0B 00 01
+T 00 46 00 00 62 D0 00 00 53 00 00 3C
+R 00 00 00 00 03 02 00 01 41 06 00 01 01 09 00 01
+T 00 4D 00 00 38 B0 28 10 7C 00 00 62 D0 00 00 20
+R 00 00 00 00 01 02 00 01 02 09 00 02 43 0D 00 01
+T 00 59 53 00 00 06 00 00 01 10 51 00 00 7C
+R 00 00 00 00 03 03 00 01 03 06 00 01 03 0B 00 01
+T 00 62 00 00 20 10 50 00 5C 7C 00 00 7C 00 00 62
+R 00 00 00 00 02 02 00 05 02 0A 00 03 02 0D 00 02
+T 00 70 D0 00 00 20 10 7C 00 00 20 8F A3 8F FF
+R 00 00 00 00 43 03 00 01 02 08 00 06

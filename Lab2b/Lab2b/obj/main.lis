@@ -1,0 +1,91 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bShadow::
+ 0000 00                .byte 0
+ 0001                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2B\Lab2B\main.c
+ 0001                   .dbsym e bShadow _bShadow c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2B\Lab2B\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2B\Lab2B\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 12
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern unsigned char bShadow =0;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 14
+ 0000           ;       //set port1[0:3] to strong
+ 0000           ;       PRT1DM0 |= 0b00001111;
+ 0000 7110              or F,0x10  ; iopage = 1
+ 0002 43040F            or REG[0x4],15
+ 0005                   .dbline 15
+ 0005           ;       PRT1DM1 &= 0b11110000;
+ 0005 4105F0            and REG[0x5],-16
+ 0008                   .dbline 16
+ 0008           ;       PRT1DM2 &= 0b11110000;
+ 0008 70CF              and F,0xCF      ; iopage = 0
+ 000A 4107F0            and REG[0x7],-16
+ 000D                   .dbline 19
+ 000D           ; 
+ 000D           ;       // change sleep timer frequency to 8Hz
+ 000D           ;       OSC_CR0 |= 0b00010000;
+ 000D 7110              or F,0x10  ; iopage = 1
+ 000F 43E010            or REG[0xe0],16
+ 0012                   .dbline 20
+ 0012           ;       OSC_CR0 &= 0b11110111;
+ 0012 41E0F7            and REG[0xe0],-9
+ 0015                   .dbline 23
+ 0015           ; 
+ 0015           ; 
+ 0015           ;       PRT1DR=0;
+ 0015 70CF              and F,0xCF      ; iopage = 0
+ 0017 620400            mov REG[0x4],0
+ 001A                   .dbline 24
+ 001A           ;       INT_MSK0 |=0b01000000;
+ 001A 43E040            or REG[0xe0],64
+ 001D 8010              xjmp L3
+ 001F           L2:
+ 001F                   .dbline 26
+ 001F           ;       while(1)
+ 001F           ;       {
+ 001F                   .dbline 28
+ 001F           ;       //puts system to sleep
+ 001F           ;       CPU_SCR0 |= 0x08;
+ 001F 43FF08            or REG[0xff],8
+ 0022                   .dbline 29
+ 0022           ;       INT_CLR0 = INT_CLR0 & ~0x40;
+ 0022 41DABF            and REG[0xda],-65
+ 0025                   .dbline 30
+ 0025           ;       bShadow++;
+ 0025 62D000            mov REG[0xd0],>_bShadow
+ 0028 7600              inc [_bShadow]
+ 002A                   .dbline 31
+ 002A           ;       PRT1DR=bShadow;
+ 002A 5100              mov A,[_bShadow]
+ 002C 6004              mov REG[0x4],A
+ 002E                   .dbline 32
+ 002E           ;       }
+ 002E           L3:
+ 002E                   .dbline 25
+ 002E 8FF0              xjmp L2
+ 0030           X0:
+ 0030                   .dbline -2
+ 0030           L1:
+ 0030                   .dbline 0 ; func end
+ 0030 8FFF              jmp .
+ 0032                   .dbend

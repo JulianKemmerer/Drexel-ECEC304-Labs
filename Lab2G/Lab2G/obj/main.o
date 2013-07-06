@@ -1,0 +1,78 @@
+XH
+H 5 areas 3 global symbols
+M main.c
+A text size 68 flags 0
+dbfile ./main.c
+dbfile Z:\Lab2G\Lab2G\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline C 0
+dbline D 0
+dbline E 2
+dbline 11 5
+dbline 16 A
+dbline 17 A
+dbline 18 D
+dbline 1A 13
+dbline 1A 13
+dbline 19 13
+dbline 1B 1C
+dbline 1C 1F
+dbline 1E 25
+dbline 1E 25
+dbline 1D 25
+dbline 1F 2E
+dbline 20 31
+dbline 22 37
+dbline 22 37
+dbline 21 37
+dbline 23 40
+dbline 24 43
+dbline 26 49
+dbline 26 49
+dbline 25 49
+dbline 27 52
+dbline 28 55
+dbline 2A 5B
+dbline 2A 5B
+dbline 29 5B
+dbline 2B 64
+dbline 15 64
+dbline FFFFFFFE 66
+dbline 0 66
+S _main Def0000
+A data size 1 flags 20
+dbfile ./main.c
+dbfile Z:\Lab2G\Lab2G\main.c
+dbsym e bShadow 0 c
+S _bShadow Def0000
+A data size 0 flags 20
+dbfile Z:\Lab2G\Lab2G\main.c
+A data size 1 flags 20
+dbfile Z:\Lab2G\Lab2G\main.c
+dbsym e bCount 0 c
+S _bCount Def0000
+A data size 0 flags 20
+dbfile Z:\Lab2G\Lab2G\main.c
+T 00 00 00
+R 00 00 00 01
+T 00 00 00
+R 00 00 00 03
+T 00 00 71 01 43 E0 40 62 04 00 80 5B 43 04 0F 62
+R 00 00 00 00
+T 00 0E D0 00 00 55 00 00 FF 62 D0 00 00 50 00 3A
+R 00 00 00 00 41 03 00 03 01 06 00 03 41 0B 00 03
+T 00 19 00 00 CF F8 41 04 F7 62 D0 00 00 55 00 00
+R 00 00 00 00 01 02 00 03 41 0B 00 03 01 0E 00 03
+T 00 24 C0 62 D0 00 00 50 00 3A 00 00 CF F8 41 04
+R 00 00 00 00 41 05 00 03 01 0A 00 03
+T 00 30 FB 62 D0 00 00 55 00 00 80 62 D0 00 00 50
+R 00 00 00 00 41 05 00 03 01 08 00 03 41 0D 00 03
+T 00 3B 00 3A 00 00 CF F8 41 04 FD 62 D0 00 00 55
+R 00 00 00 00 01 04 00 03 41 0D 00 03
+T 00 47 00 00 40 62 D0 00 00 50 00 3A 00 00 CF F8
+R 00 00 00 00 01 02 00 03 41 07 00 03 01 0C 00 03
+T 00 52 41 04 FE 62 D0 00 00 55 00 00 20 62 D0
+R 00 00 00 00 41 07 00 03 01 0A 00 03
+T 00 5D 00 00 50 00 3A 00 00 CF F8 8F A5 8F FF
+R 00 00 00 00 41 02 00 03 01 07 00 03

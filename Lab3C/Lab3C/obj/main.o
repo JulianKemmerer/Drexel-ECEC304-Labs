@@ -1,0 +1,21 @@
+XH
+H 1 areas 3 global symbols
+M main.c
+S _PWM8_1_Start Ref0000
+S _PWM8_2_Start Ref0000
+A text size C flags 0
+dbfile ./main.c
+dbfile Z:\Lab3C\Lab3C\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline A 0
+dbline D 0
+dbline E 4
+dbline 10 8
+dbline 11 8
+dbline F 8
+dbline FFFFFFFE A
+dbline 0 A
+S _main Def0000
+T 00 00 10 7C 00 00 7C 00 00 20 8F FF 8F FF
+R 00 00 00 00 02 04 00 00 02 07 00 01

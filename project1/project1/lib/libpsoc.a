@@ -1,0 +1,819 @@
+.start
+XH
+H 2 areas E global symbols
+M vr_pga.asm
+A text size 0 flags 0
+dbfile lib/vr_pga.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_pga.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_pga.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/VR_PGA.inc
+dbfunc 0 ? 0 I
+A UserModules size 40 flags 0
+dbfile lib/vr_pga.asm
+dbfunc 0 ? 0 I
+dbline 74 0
+dbline 75 2
+dbline 77 3
+dbline 78 4
+dbline 79 6
+dbline 7A 8
+dbline 7B A
+dbline 7C C
+dbline 3 D
+dbline 4 F
+dbline 7E 11
+dbline 9D 12
+dbline 9E 14
+dbline A0 15
+dbline A1 16
+dbline A2 18
+dbline A3 1A
+dbline A4 1D
+dbline A5 1F
+dbline A6 22
+dbline A7 24
+dbline A8 26
+dbline 3 27
+dbline 4 29
+dbline AA 2B
+dbline AD 2C
+dbline AE 2F
+dbline AF 31
+dbline B0 33
+dbline B1 36
+dbline 3 37
+dbline 4 39
+dbline B3 3B
+dbline CE 3C
+dbline D0 3F
+S $sb$VR_PGA_Stop Def003C
+S $se$VR_PGA_Stop Def0040
+S $sb$VR_PGA_SetGain Def0012
+S $se$VR_PGA_SetGain Def003C
+S _VR_PGA_Stop Def003C
+S _VR_PGA_SetGain Def0012
+S VR_PGA_Start Def0000
+S $sb$VR_PGA_Start Def0000
+S $se$VR_PGA_Start Def0012
+S VR_PGA_SetPower Def0000
+S _VR_PGA_Start Def0000
+S _VR_PGA_SetPower Def0000
+S VR_PGA_Stop Def003C
+S VR_PGA_SetGain Def0012
+T 00 00 21 03 4F 08 5D 73 21 FC 2B 00 60 73 18 70
+R 00 00 00 01
+T 00 0E 3F 71 C0 7F 21 FC 4F 08 5D 71 21 07 48 00
+R 00 00 00 01
+T 00 1C 04 B0 0E 41 70 FE 2B 00 60 71 18 70 3F 71
+R 00 00 00 01
+T 00 2A C0 7F 27 00 18 2B 00 60 71 43 70 01 18 70
+R 00 00 00 01
+T 00 38 3F 71 C0 7F 41 73 FC 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas B global symbols
+M vr_adcint.asm
+A text size 0 flags 0
+dbfile lib/vr_adcint.asm
+dbfunc 0 ? 0 I
+dbfile VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_adcint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_adcint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 8 flags 20
+S VR_ADC_iResult Def0000
+S VR_ADC_fStatus Def0004
+S VR_ADC_fMode Def0006
+S _VR_ADC_iResult Def0000
+S _VR_ADC_fStatus Def0004
+S _VR_ADC_fMode Def0006
+S VR_ADC_bState Def0005
+S VR_ADC_bNumSamples Def0007
+S _VR_ADC_bState Def0005
+S _VR_ADC_bNumSamples Def0007
+A UserModules size 6E flags 0
+dbfile lib/vr_adcint.asm
+dbfunc 0 ? 0 I
+dbline 5D 0
+dbline 5F 2
+dbline 60 4
+dbline 62 5
+dbline 64 8
+dbline 65 A
+dbline 66 B
+dbline 67 D
+dbline 68 F
+dbline 69 11
+dbline 6A 13
+dbline 6B 14
+dbline 6C 17
+dbline 6D 1A
+dbline 3 1B
+dbline 5 1E
+dbline 71 21
+dbline 72 22
+dbline 73 24
+dbline 74 26
+dbline 75 28
+dbline 76 2A
+dbline 7A 2C
+dbline 7C 2E
+dbline 7D 30
+dbline 7E 31
+dbline 8F 34
+dbline 90 37
+dbline 91 39
+dbline A2 3C
+dbline A3 3D
+dbline A5 40
+dbline A6 42
+dbline A7 45
+dbline 2 48
+dbline 4 4B
+dbline A9 4E
+dbline AB 4F
+dbline AD 51
+dbline AE 53
+dbline AF 56
+dbline 2 59
+dbline 4 5C
+dbline B1 5F
+dbline 2 60
+dbline B5 62
+dbline B6 65
+dbline 2 68
+dbline 3 6A
+dbline B9 6D
+S _VR_ADC_ADConversion_ISR Def0000
+T 00 00 7A 00 05 C0 02 7E 3C 00 06 00 B0 12 08 5D
+R 00 00 00 02 01 03 00 01 01 09 00 01
+T 00 0C E5 53 00 03 5D E4 53 00 02 18 55 00 06 01
+R 00 00 00 02 01 04 00 01 01 09 00 01 01 0D 00 01
+T 00 17 55 00 05 03 7E 43 82 20 43 83 10 08 5D E5
+R 00 00 00 02 01 03 00 01
+T 00 24 12 00 03 53 00 03 5D E4 1A 00 02 39 01 B0
+R 00 00 00 02 01 03 00 01 01 06 00 01 01 0B 00 01
+T 00 2F 05 78 55 00 03 FF 5F 00 01 00 03 53
+R 00 00 00 02 01 05 00 01 01 09 00 01 01 0B 00 01
+T 00 38 00 00 55 00 04 01 18 3C 00 07 00 B0 0E 55
+R 00 00 00 02 01 02 00 01 01 05 00 01 01 0A 00 01
+T 00 43 00 06 00 55 00 05 00 41 83 EF 41 82 DF 7E
+R 00 00 00 02 01 02 00 01 01 06 00 01
+T 00 4F 7A 00 07 A0 0E 55 00 06 00 55 00 05 00 41
+R 00 00 00 02 01 03 00 01 01 08 00 01 01 0C 00 01
+T 00 5A 83 EF 41 82 DF 7E 71 10 41 E7 3F 43 E7 80
+R 00 00 00 02
+T 00 68 70 EF 41 E1 FE 7E
+R 00 00 00 02
+.end
+.start
+XH
+H 3 areas 3D global symbols
+M vr_adc.asm
+S VR_ADC_iResult Ref0000
+S VR_ADC_fStatus Ref0000
+S VR_ADC_fMode Ref0000
+S VR_ADC_bState Ref0000
+S VR_ADC_bNumSamples Ref0000
+A text size 0 flags 0
+dbfile lib/vr_adc.asm
+dbfunc 0 ? 0 I
+dbfile VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/VR_ADC.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_adc.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/vr_adc.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A bss size 0 flags 20
+A UserModules size A1 flags 0
+dbfile lib/vr_adc.asm
+dbfunc 0 ? 0 I
+dbline 61 0
+dbline 3 2
+dbline 5 5
+dbline 63 8
+dbline 64 B
+dbline 66 E
+dbline 7D F
+dbline 7E 10
+dbline 7F 12
+dbline 80 13
+dbline 81 15
+dbline 82 17
+dbline 83 19
+dbline 84 1B
+dbline 3 1C
+dbline 4 1E
+dbline 86 20
+dbline 3 21
+dbline 9E 24
+dbline 9F 27
+dbline A1 2A
+dbline 3 2B
+dbline 2 2E
+dbline 4 31
+dbline BD 34
+dbline BE 37
+dbline BF 3A
+dbline C0 3C
+dbline C1 3E
+dbline C2 40
+dbline 2 43
+dbline C6 45
+dbline C7 48
+dbline 2 4B
+dbline 3 4D
+dbline 4 50
+dbline CC 53
+dbline 2 54
+dbline E6 56
+dbline E7 59
+dbline 2 5C
+dbline 3 5E
+dbline 3 61
+dbline 5 64
+dbline EC 67
+dbline 3 68
+dbline 3 6B
+dbline 107 6D
+dbline 3 6E
+dbline 4 71
+dbline 5 74
+dbline 6 76
+dbline 7 78
+dbline 8 7B
+dbline 127 7D
+dbline 3 7E
+dbline 3 81
+dbline 4 84
+dbline 145 86
+dbline 3 87
+dbline 3 8A
+dbline 4 8C
+dbline 162 8E
+dbline 3 8F
+dbline 3 92
+dbline 17F 94
+dbline 3 95
+dbline 3 98
+dbline 4 9A
+dbline 19C 9D
+dbline 2 9E
+dbline 1B6 A0
+S $sb$VR_ADC_fClearFlag Def0095
+S $se$VR_ADC_fClearFlag Def009E
+S VR_ADC_GetSamples Def002B
+S VR_ADC_bGetData Def008F
+S VR_ADC_cGetData Def008F
+S VR_ADC_iGetData Def0087
+S _VR_ADC_Stop Def0021
+S VR_ADC_Start Def0000
+S VR_ADC_wGetData Def0087
+S $sb$VR_ADC_GetSamples Def002B
+S VR_ADC_WritePulseWidth Def009E
+S $se$VR_ADC_GetSamples Def0054
+S $sb$VR_ADC_bGetData Def008F
+S $se$VR_ADC_bGetData Def0095
+S VR_ADC_fIsDataAvailable Def0068
+S $sb$VR_ADC_iGetData Def0087
+S $se$VR_ADC_iGetData Def008F
+S _VR_ADC_fClearFlag Def0095
+S $sb$VR_ADC_Start Def0000
+S $se$VR_ADC_Start Def000F
+S $sb$VR_ADC_WritePulseWidth Def009E
+S $se$VR_ADC_WritePulseWidth Def00A1
+S VR_ADC_SetPower Def000F
+S $sb$VR_ADC_fIsDataAvailable Def0068
+S $se$VR_ADC_fIsDataAvailable Def006E
+S _VR_ADC_GetSamples Def002B
+S $sb$VR_ADC_SetPower Def000F
+S $se$VR_ADC_SetPower Def0021
+S _VR_ADC_bGetData Def008F
+S _VR_ADC_cGetData Def008F
+S VR_ADC_bClearFlagGetData Def007E
+S VR_ADC_cClearFlagGetData Def007E
+S _VR_ADC_iGetData Def0087
+S VR_ADC_iClearFlagGetData Def006E
+S _VR_ADC_Start Def0000
+S VR_ADC_StopADC Def0054
+S _VR_ADC_wGetData Def0087
+S VR_ADC_wClearFlagGetData Def006E
+S _VR_ADC_WritePulseWidth Def009E
+S $sb$VR_ADC_cClearFlagGetData Def007E
+S _VR_ADC_fIsDataAvailable Def0068
+S $se$VR_ADC_cClearFlagGetData Def0087
+S $sb$VR_ADC_iClearFlagGetData Def006E
+S $se$VR_ADC_iClearFlagGetData Def007E
+S $sb$VR_ADC_StopADC Def0054
+S $se$VR_ADC_StopADC Def0068
+S _VR_ADC_SetPower Def000F
+S VR_ADC_Stop Def0021
+S _VR_ADC_bClearFlagGetData Def007E
+S _VR_ADC_cClearFlagGetData Def007E
+S $sb$VR_ADC_Stop Def0021
+S _VR_ADC_iClearFlagGetData Def006E
+S $se$VR_ADC_Stop Def002B
+S VR_ADC_fClearFlag Def0095
+S _VR_ADC_StopADC Def0054
+S _VR_ADC_wClearFlagGetData Def006E
+T 00 00 90 0D 43 82 20 43 83 10 62 21 FF 43 23 01
+R 00 00 00 02
+T 00 0E 7F 4F 21 03 08 5D 83 21 FC 2B 00 60 83 18
+R 00 00 00 02
+T 00 1C 70 3F 71 C0 7F 41 E1 FE 41 83 FC 41 23 FE
+R 00 00 00 02
+T 00 2A 7F 62 D0 00 00 41 83 EF 41 82 DF 55 00 00
+R 00 00 00 02 43 05 00 02 03 0E 00 02
+T 00 36 00 55 00 00 00 53 00 00 5D 22 B0 04 62 22
+R 00 00 00 02 03 04 00 03 03 08 00 04
+T 00 42 01 71 10 41 E7 3F 43 E7 40 70 EF 62 DB FE
+R 00 00 00 02
+T 00 50 43 E1 01 7F 71 10 41 E7 3F 43 E7 80 70 EF
+R 00 00 00 02
+T 00 5E 41 E1 FE 43 82 20 43 83 10 7F 62 D0 00 00
+R 00 00 00 02 43 0E 00 01
+T 00 6B 51 00 00 7F 62 D0 00 00 55 00 00 00 58
+R 00 00 00 02 03 03 00 01 43 08 00 01 03 0B 00 01
+T 00 75 00 00 51 00 01 3C 00 00 00 BF F5 7F 62 D0
+R 00 00 00 02 03 02 00 00 03 05 00 00 03 08 00 01
+T 00 80 00 00 55 00 00 00 51 00 01 7F 62 D0
+R 00 00 00 02 43 02 00 01 03 05 00 01 03 09 00 00
+T 00 89 00 00 58 00 00 51 00 01 7F 62 D0
+R 00 00 00 02 43 02 00 00 03 05 00 00 03 08 00 00
+T 00 91 00 00 51 00 01 7F 62 D0 00 00 51
+R 00 00 00 02 43 02 00 00 03 05 00 00 43 0A 00 01
+T 00 99 00 00 55 00 00 00 7F 60 22 7F
+R 00 00 00 02 03 02 00 01 03 05 00 01
+.end
+.start
+XH
+H 2 areas 3 global symbols
+M psocconfigtbl.asm
+A text size 0 flags 0
+dbfile lib/psocconfigtbl.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A lit size 1A1 flags 0
+dbfile lib/psocconfigtbl.asm
+dbfunc 0 ? 9C I
+dbline 2 9C
+dbline 6D 9E
+dbline 2 A1
+dbline 6F A3
+dbline 70 A6
+dbline 2 A9
+dbline 72 AB
+dbline 73 AE
+dbline 2 B1
+dbline 75 B3
+dbline 76 B6
+dbline 2 B9
+dbline 78 BB
+dbline 79 BE
+dbline 2 C1
+dbline 7B C3
+dbline 7C C6
+dbline 2 C9
+dbline 7E CB
+dbline 7F CE
+dbline 2 D1
+dbline 81 D3
+dbline 82 D6
+dbline 2 D9
+dbline 84 DB
+dbline 85 DE
+dbline 2 E1
+dbline 87 E3
+dbline 88 E6
+dbline 2 E9
+dbline 8A EB
+dbline 8B EE
+dbline 2 F1
+dbline 8D F3
+dbline 8E F6
+dbline 2 F9
+dbline 90 FB
+dbline 91 FE
+dbline 2 101
+dbline 93 103
+dbline 94 106
+dbline 2 109
+dbline 96 10B
+dbline 97 10E
+dbline 2 111
+dbline 99 113
+dbline 9A 116
+dbline 2 119
+dbline 9C 11B
+dbline 9D 11E
+dbline 2 121
+dbline 9F 123
+dbline A0 126
+dbline 2 129
+dbline A2 12B
+dbline A3 12E
+dbline 2 131
+dbline A5 133
+dbline A6 136
+dbline 2 139
+dbline A8 13B
+dbline A9 13E
+dbline 2 141
+dbline AB 143
+dbline AC 146
+dbline 2 149
+dbline AE 14B
+dbline AF 14E
+dbline 2 151
+dbline B1 153
+dbline B2 156
+dbline 2 159
+dbline B4 15B
+dbline B5 15E
+dbline 2 161
+dbline B7 163
+dbline B8 166
+dbline 2 169
+dbline BA 16B
+dbline BB 16E
+dbline 2 171
+dbline BD 173
+dbline BE 176
+dbline 2 179
+dbline C0 17B
+dbline C1 17E
+dbline 2 181
+dbline C3 183
+dbline C4 186
+dbline 2 189
+dbline C6 18B
+dbline C7 18E
+dbline 2 191
+dbline C9 193
+dbline CA 196
+dbline 2 199
+dbline CC 19B
+dbline 2 19E
+dbline CE 1A0
+S LoadConfigTBL_project1_Bank0 Def0000
+S LoadConfigTBL_project1_Bank1 Def006B
+S LoadConfigTBL_project1_Ordered Def009C
+T 00 00 27 04 25 FA 26 00 80 90 81 00 82 60 83 F0
+R 00 00 00 01
+T 00 0E 23 00 21 00 22 01 71 FD 72 21 73 20 70 00
+R 00 00 00 01
+T 00 1C 60 28 66 00 63 05 65 00 E6 00 E7 42 D6 00
+R 00 00 00 01
+T 00 2A B0 00 B1 00 B2 00 B3 33 B4 33 B5 00 B6 01
+R 00 00 00 01
+T 00 38 B8 55 B9 00 BA 10 BB 33 BC 33 BD 00 BE 00
+R 00 00 00 01
+T 00 46 C0 00 C1 00 C2 20 C3 33 C4 33 C5 00 C6 00
+R 00 00 00 01
+T 00 54 C8 55 C9 00 CA 30 CB 33 CC 33 CD 00 CE 00
+R 00 00 00 01
+T 00 62 6C 00 6D 00 6E 00 6F 00 FF 24 30 25 01 26
+R 00 00 00 01
+T 00 70 46 20 31 21 15 22 40 61 00 69 00 60 00 62
+R 00 00 00 01
+T 00 7E 00 67 33 68 33 63 00 66 00 D1 00 D3 00 D0
+R 00 00 00 01
+T 00 8C 00 D2 00 E1 FF E2 00 DF FF DE 02 DD 00 E7
+R 00 00 00 01
+T 00 9A 48 FF 70 EF 62 00 00 71 10 62 00 05 62 01
+R 00 00 00 01
+T 00 A8 FA 70 EF 62 03 FA 62 02 04 71 10 62 02 00
+R 00 00 00 01
+T 00 B6 62 03 00 70 EF 62 01 00 62 04 00 71 10 62
+R 00 00 00 01
+T 00 C4 04 00 62 05 FF 70 EF 62 07 FF 62 06 00 71
+R 00 00 00 01
+T 00 D2 10 62 06 00 62 07 00 70 EF 62 05 00 62 08
+R 00 00 00 01
+T 00 E0 00 71 10 62 08 00 62 09 FF 70 EF 62 0B FF
+R 00 00 00 01
+T 00 EE 62 0A 00 71 10 62 0A 00 62 0B 00 70 EF 62
+R 00 00 00 01
+T 00 FC 09 00 62 0C 00 71 10 62 0C 00 62 0D 00 70
+R 00 00 00 01
+T 01 0A EF 62 0F 00 62 0E 00 71 10 62 0E 00 62 0F
+R 00 00 00 01
+T 01 18 00 70 EF 62 0D 00 62 10 00 71 10 62 10 00
+R 00 00 00 01
+T 01 26 62 11 00 70 EF 62 13 00 62 12 00 71 10 62
+R 00 00 00 01
+T 01 34 12 00 62 13 00 70 EF 62 11 00 62 14 00 71
+R 00 00 00 01
+T 01 42 10 62 14 00 62 15 00 70 EF 62 17 00 62 16
+R 00 00 00 01
+T 01 50 00 71 10 62 16 00 62 17 00 70 EF 62 15 00
+R 00 00 00 01
+T 01 5E 62 18 00 71 10 62 18 00 62 19 00 70 EF 62
+R 00 00 00 01
+T 01 6C 1B 00 62 1A 00 71 10 62 1A 00 62 1B 00 70
+R 00 00 00 01
+T 01 7A EF 62 19 00 62 1C 00 71 10 62 1C 00 62 1D
+R 00 00 00 01
+T 01 88 00 70 EF 62 1F 00 62 1E 00 71 10 62 1E 00
+R 00 00 00 01
+T 01 96 62 1F 00 70 EF 62 1D 00 70 EF 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas 9 global symbols
+M psocconfig.asm
+S LoadConfigTBL_project1_Bank0 Ref0000
+S LoadConfigTBL_project1_Bank1 Ref0000
+S LoadConfigTBL_project1_Ordered Ref0000
+A text size 0 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/GlobalParams.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A psoc_config size 62 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbline 3A 0
+dbline 3B 3
+dbline 3F 6
+dbline 58 7
+dbline 2 8
+dbline 5A A
+dbline 5B C
+dbline 5D D
+dbline 5E F
+dbline 5F 11
+dbline 61 14
+dbline 62 16
+dbline 64 17
+dbline 65 19
+dbline 66 1B
+dbline 2 1E
+dbline 69 20
+dbline 6C 21
+dbline 82 22
+dbline 83 24
+dbline 84 25
+dbline 85 26
+dbline 86 27
+dbline 87 2A
+dbline 88 2C
+dbline 8A 2F
+dbline 8B 30
+dbline 2 31
+dbline 2 33
+dbline 90 36
+dbline 91 37
+dbline 92 38
+dbline 93 39
+dbline 94 3B
+dbline 95 3D
+dbline 96 3E
+dbline 97 41
+dbline 2 43
+dbline 9A 45
+dbline 9B 47
+dbline 9C 48
+dbline 9D 49
+dbline 9E 4A
+dbline 9F 4C
+dbline A0 4D
+dbline A1 4E
+dbline A2 4F
+dbline A3 50
+dbline A4 52
+dbline A5 54
+dbline A6 55
+dbline A7 56
+dbline A8 57
+dbline A9 59
+dbline AB 5B
+dbline 3 5D
+dbline 4 5F
+dbline AD 61
+S LoadConfig_project1 Def0007
+S LoadConfigInit Def0000
+S _LoadConfig_project1 Def0007
+S _LoadConfigInit Def0000
+A InterruptRAM size 0 flags 20
+S _NO_SHADOW Def0000
+S NO_SHADOW Def0000
+T 00 00 7C 00 07 7C 00 00 7F 10 70 EF 50 00 67 50
+R 00 00 00 01 00 03 00 01 02 06 00 02
+T 00 0E 00 00 57 00 00 7C 00 22 50 01 67 50
+R 00 00 00 01 43 02 00 00 03 05 00 00 00 08 00 01
+T 00 18 00 00 57 00 00 7C 00 22 70 EF 20 7F 38 02
+R 00 00 00 01 43 02 00 01 03 05 00 01 00 08 00 01
+T 00 24 10 08 4F 56 FC 00 D0 04 56 FC 01 18 20 70
+R 00 00 00 01
+T 00 32 EF 62 E3 00 10 08 28 39 FF A0 1F 4F 48 FC
+R 00 00 00 01
+T 00 40 01 A0 03 71 10 54 FD 18 20 75 09 00 10 08
+R 00 00 00 01
+T 00 4E 28 4F 59 FD 61 00 18 20 75 09 00 8F D7 38
+R 00 00 00 01
+T 00 5C FC 70 3F 71 C0 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas 2 global symbols
+M ledflashtimerint.asm
+S _LEDFlashTimer_ISR_C Ref0000
+A text size 0 flags 0
+dbfile lib/ledflashtimerint.asm
+dbfunc 0 ? 0 I
+dbfile LEDFlashTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LEDFlashTimer.inc
+dbfunc 0 ? 0 I
+dbfile lib/ledflashtimerint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ledflashtimerint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 0 flags 20
+A UserModules size 4 flags 0
+dbfile lib/ledflashtimerint.asm
+dbfunc 0 ? 0 I
+dbline 46 0
+dbline 5A 3
+S _LEDFlashTimer_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 02 02 03 00 00
+.end
+.start
+XH
+H 3 areas 2E global symbols
+M ledflashtimer.asm
+A text size 0 flags 0
+dbfile lib/ledflashtimer.asm
+dbfunc 0 ? 0 I
+dbfile LEDFlashTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LEDFlashTimer.inc
+dbfunc 0 ? 0 I
+dbfile lib/ledflashtimer.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ledflashtimer.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.1/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A project1_RAM size 0 flags 20
+A UserModules size 49 flags 0
+dbfile lib/ledflashtimer.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 66 3
+dbline 2 4
+dbline 82 7
+dbline 2 8
+dbline 9E B
+dbline 2 C
+dbline BA F
+dbline D5 10
+dbline D7 12
+dbline F3 13
+dbline F5 15
+dbline 110 16
+dbline 112 18
+dbline 145 19
+dbline 146 1A
+dbline 147 1C
+dbline 148 1E
+dbline 149 1F
+dbline 14A 21
+dbline 14B 22
+dbline 14D 24
+dbline 14E 26
+dbline 14F 28
+dbline 150 2A
+dbline 151 2D
+dbline 152 2F
+dbline 154 31
+dbline 2 33
+dbline 2 35
+dbline 157 38
+dbline 158 39
+dbline 159 3B
+dbline 15A 3C
+dbline 15B 3E
+dbline 3 3F
+dbline 4 41
+dbline 15D 43
+dbline 186 44
+dbline 188 46
+dbline 18A 48
+S bLEDFlashTimer_ReadTimer Def0044
+S LEDFlashTimer_bReadTimer Def0044
+S LEDFlashTimer_DisableInt Def0004
+S $sb$LEDFlashTimer_WriteCompareValue Def0013
+S $se$LEDFlashTimer_WriteCompareValue Def0016
+S $sb$LEDFlashTimer_bReadTimer Def0044
+S $sb$LEDFlashTimer_DisableInt Def0004
+S $se$LEDFlashTimer_bReadTimer Def0049
+S $se$LEDFlashTimer_DisableInt Def0008
+S _bLEDFlashTimer_ReadCompareValue Def0016
+S _LEDFlashTimer_bReadCompareValue Def0016
+S _LEDFlashTimer_Stop Def000C
+S bLEDFlashTimer_ReadTimerSaveCV Def0019
+S LEDFlashTimer_bReadTimerSaveCV Def0019
+S LEDFlashTimer_Start Def0008
+S bLEDFlashTimer_CaptureCounter Def0044
+S _bLEDFlashTimer_ReadCounter Def0019
+S $sb$LEDFlashTimer_bReadTimerSaveCV Def0019
+S $se$LEDFlashTimer_bReadTimerSaveCV Def0044
+S $sb$LEDFlashTimer_Start Def0008
+S $se$LEDFlashTimer_Start Def000C
+S _LEDFlashTimer_WriteCompareValue Def0013
+S _bLEDFlashTimer_ReadTimer Def0044
+S _LEDFlashTimer_bReadTimer Def0044
+S _LEDFlashTimer_DisableInt Def0004
+S _bLEDFlashTimer_ReadTimerSaveCV Def0019
+S _LEDFlashTimer_bReadTimerSaveCV Def0019
+S _LEDFlashTimer_Start Def0008
+S LEDFlashTimer_WritePeriod Def0010
+S LEDFlashTimer_EnableInt Def0000
+S _bLEDFlashTimer_CaptureCounter Def0044
+S $sb$LEDFlashTimer_WritePeriod Def0010
+S $se$LEDFlashTimer_WritePeriod Def0013
+S $sb$LEDFlashTimer_EnableInt Def0000
+S $se$LEDFlashTimer_EnableInt Def0004
+S bLEDFlashTimer_ReadCompareValue Def0016
+S LEDFlashTimer_bReadCompareValue Def0016
+S LEDFlashTimer_Stop Def000C
+S bLEDFlashTimer_ReadCounter Def0019
+S $sb$LEDFlashTimer_bReadCompareValue Def0016
+S $se$LEDFlashTimer_bReadCompareValue Def0019
+S $sb$LEDFlashTimer_Stop Def000C
+S $se$LEDFlashTimer_Stop Def0010
+S _LEDFlashTimer_WritePeriod Def0010
+S LEDFlashTimer_WriteCompareValue Def0013
+S _LEDFlashTimer_EnableInt Def0000
+T 00 00 43 E1 02 7F 41 E1 FD 7F 43 27 01 7F 41 27
+R 00 00 00 02
+T 00 0E FE 7F 60 25 7F 60 26 7F 5D 26 7F 4F 38 02
+R 00 00 00 02
+T 00 1C 5D 27 08 5D 26 08 5D 24 5D 26 54 01 50 00
+R 00 00 00 02
+T 00 2A 49 F7 01 A0 03 50 01 54 00 70 FE 41 27 FE
+R 00 00 00 02
+T 00 38 18 60 26 18 60 27 18 70 3F 71 C0 7E 5D 24
+R 00 00 00 02
+T 00 46 5D 26 7F
+R 00 00 00 02
+.end

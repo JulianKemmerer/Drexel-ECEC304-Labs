@@ -1,0 +1,204 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\MYDOCU~1\PSOCDE~1.1PR\project1\project1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 28
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; #pragma interrupt_handler LEDFlashTimer_ISR_C
+ 0000           ;               // Write the interrupt handler for the Flash Timer in C.
+ 0000           ; 
+ 0000           ; #define               LED1_PORT               PRT0DR
+ 0000           ;               //Constant definition for the data port (Port 0) where the LED (LED1) resides.
+ 0000           ; 
+ 0000           ; #define               LED1_ON                 0x01
+ 0000           ;               //Constant definition to OR with the LED1_PORT to turn on the LED (LED1).
+ 0000           ; 
+ 0000           ; #define               LED1_OFF                0xFE
+ 0000           ;               //Constant definition to AND with the LED1_PORT to turn off the LED (LED1).
+ 0000           ; 
+ 0000           ; unsigned char ucVR_ADCResult;
+ 0000           ;               //This global variable holds the converted output of the potentiometer (VR).
+ 0000           ; 
+ 0000           ; void main()
+ 0000           ; {
+ 0000                   .dbline 29
+ 0000           ;     M8C_EnableGInt;
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 32
+ 0002           ;           //Enables the Global Interrupt
+ 0002           ; 
+ 0002           ;       LEDFlashTimer_Start();
+ 0002 10                push X
+ 0003 7C0000            xcall _LEDFlashTimer_Start
+ 0006 20                pop X
+ 0007                   .dbline 35
+ 0007           ;          //Start the Timer UM
+ 0007           ; 
+ 0007           ;       VR_PGA_Start(VR_PGA_HIGHPOWER);
+ 0007 10                push X
+ 0008 5003              mov A,3
+ 000A 7C0000            xcall _VR_PGA_Start
+ 000D 20                pop X
+ 000E                   .dbline 39
+ 000E           ;                       //Performs all required initialization for the PGA User Module and sets the power level for the PGA
+ 000E           ;                       //to high power (VR_PGA_HIGHPOWER).
+ 000E           ; 
+ 000E           ;       VR_ADC_Start(VR_ADC_HIGHPOWER);
+ 000E 10                push X
+ 000F 5003              mov A,3
+ 0011 7C0000            xcall _VR_ADC_Start
+ 0014 20                pop X
+ 0015                   .dbline 42
+ 0015           ;                       //Performs all required initialization for the VR_ADC User Module and sets the power level to high power.
+ 0015           ; 
+ 0015           ;       VR_ADC_GetSamples(0);
+ 0015 10                push X
+ 0016 5000              mov A,0
+ 0018 7C0000            xcall _VR_ADC_GetSamples
+ 001B 20                pop X
+ 001C 803F              xjmp L3
+ 001E           L2:
+ 001E                   .dbline 48
+ 001E           ;                       //Sets the VR_ADC to run continuously by providing a 0 in the paramater list.
+ 001E           ; 
+ 001E           ; 
+ 001E           ;     while(1)
+ 001E           ;               //infinte loop.
+ 001E           ;       {
+ 001E                   .dbline 49
+ 001E           ;               if (VR_ADC_fIsDataAvailable() != 0)
+ 001E 10                push X
+ 001F 7C0000            xcall _VR_ADC_fIsDataAvailable
+ 0022 62D000            mov REG[0xd0],>__r0
+ 0025 20                pop X
+ 0026 3900              cmp A,0
+ 0028 A033              jz L5
+ 002A                   .dbline 52
+ 002A           ;                               //This function checks the availability of sampled data.  The function returns a non-zero
+ 002A           ;                               //value if data has been converted and is ready to read.
+ 002A           ;               {
+ 002A                   .dbline 53
+ 002A           ;               ucVR_ADCResult = VR_ADC_bClearFlagGetData();
+ 002A 10                push X
+ 002B 7C0000            xcall _VR_ADC_bClearFlagGetData
+ 002E 20                pop X
+ 002F 62D000            mov REG[0xd0],>_ucVR_ADCResult
+ 0032 5300              mov [_ucVR_ADCResult],A
+ 0034                   .dbline 59
+ 0034           ;                               //This function clears the data ready flag and gets converted data as an unsigned char and
+ 0034           ;                               //stores it in the variable ucVR_ADCResult.   This function also checks to see that data-flag
+ 0034           ;                               //is still reset.   If not the data is retrieved again.   This makes sure that the ADC interrupt
+ 0034           ;                               //routine did not update the answer while it was being collected.
+ 0034           ; 
+ 0034           ;                       if (ucVR_ADCResult <= 85 )
+ 0034 5055              mov A,85
+ 0036 3A00              cmp A,[_ucVR_ADCResult]
+ 0038 C00B              jc L7
+ 003A           X1:
+ 003A                   .dbline 61
+ 003A           ;                               // Test to see if the potentiometer is less than 1/3 of the way up its 8-bit scale.
+ 003A           ;                       {
+ 003A                   .dbline 62
+ 003A           ;                               LEDFlashTimer_DisableInt();
+ 003A 10                push X
+ 003B 7C0000            xcall _LEDFlashTimer_DisableInt
+ 003E 20                pop X
+ 003F                   .dbline 64
+ 003F           ;                                       //Disabling the Interrupt for the Timer stops the blinking
+ 003F           ;                               LED1_PORT &= LED1_OFF;
+ 003F 4100FE            and REG[0],-2
+ 0042                   .dbline 66
+ 0042           ;                                       // Turns the LED Off
+ 0042           ;                       }       //end (ucVR_ADCResult <= 85)
+ 0042 8019              xjmp L8
+ 0044           L7:
+ 0044                   .dbline 68
+ 0044           ; 
+ 0044           ;                       else if (ucVR_ADCResult <= 170)
+ 0044 62D000            mov REG[0xd0],>_ucVR_ADCResult
+ 0047 50AA              mov A,-86
+ 0049 3A00              cmp A,[_ucVR_ADCResult]
+ 004B C008              jc L9
+ 004D           X2:
+ 004D                   .dbline 70
+ 004D           ;                               // Test to see if the potentiometer is less than 2/3 of the way up its 8-bit scale.
+ 004D           ;                       {
+ 004D                   .dbline 71
+ 004D           ;                               LEDFlashTimer_EnableInt();
+ 004D 10                push X
+ 004E 7C0000            xcall _LEDFlashTimer_EnableInt
+ 0051 20                pop X
+ 0052                   .dbline 73
+ 0052           ;                                       //Flashes the LED
+ 0052           ;                       } // end (ucVR_ADCResult <= 170)
+ 0052 8009              xjmp L10
+ 0054           L9:
+ 0054                   .dbline 76
+ 0054           ;                       else
+ 0054           ;                               // Don't need to test the top third.
+ 0054           ;                       {
+ 0054                   .dbline 77
+ 0054           ;                               LEDFlashTimer_DisableInt();
+ 0054 10                push X
+ 0055 7C0000            xcall _LEDFlashTimer_DisableInt
+ 0058 20                pop X
+ 0059                   .dbline 79
+ 0059           ;                                       //Disabling the Interrupt for the Timer stops the blinking
+ 0059           ;                               LED1_PORT |= LED1_ON;
+ 0059 430001            or REG[0],1
+ 005C                   .dbline 81
+ 005C           ;                                       //Turn on LED1 by setting Bit 0 of Port 0 to high.
+ 005C           ;                       } // end else
+ 005C           L10:
+ 005C           L8:
+ 005C                   .dbline 82
+ 005C           ;               } // end (VR_ADC_fIsDataAvailable() != 0)
+ 005C           L5:
+ 005C                   .dbline 83
+ 005C           ;       }
+ 005C           L3:
+ 005C                   .dbline 46
+ 005C 8FC1              xjmp L2
+ 005E           X0:
+ 005E                   .dbline -2
+ 005E           L1:
+ 005E                   .dbline 0 ; func end
+ 005E 8FFF              jmp .
+ 0060                   .dbend
+ 0060                   .dbfunc e LEDFlashTimer_ISR_C _LEDFlashTimer_ISR_C fV
+ 0060           _LEDFlashTimer_ISR_C::
+ 0060                   .dbline -1
+ 0060                   .dbline 87
+ 0060           ; 
+ 0060           ; }
+ 0060           ; void LEDFlashTimer_ISR_C()
+ 0060           ; {
+ 0060                   .dbline 89
+ 0060           ;     //Read Port0 and XOR it with 0x01 to change the status from On to Off and vice-versa.
+ 0060           ;     PRT0DR ^= 0x01;
+ 0060 450001            xor REG[0],1
+ 0063                   .dbline -2
+ 0063           L11:
+ 0063                   .dbline 0 ; func end
+ 0063 7E                reti
+ 0064                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\MYDOCU~1\PSOCDE~1.1PR\project1\project1\main.c
+ 0000           _ucVR_ADCResult::
+ 0000 00                .byte 0
+ 0001                   .dbsym e ucVR_ADCResult _ucVR_ADCResult c

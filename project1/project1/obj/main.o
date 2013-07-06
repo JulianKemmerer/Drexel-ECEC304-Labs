@@ -1,0 +1,75 @@
+XH
+H 2 areas C global symbols
+M main.c
+S __r0 Ref0000
+S _LEDFlashTimer_DisableInt Ref0000
+S _VR_ADC_GetSamples Ref0000
+S _LEDFlashTimer_Start Ref0000
+S _VR_ADC_Start Ref0000
+S _VR_ADC_fIsDataAvailable Ref0000
+S _VR_PGA_Start Ref0000
+S _VR_ADC_bClearFlagGetData Ref0000
+S _LEDFlashTimer_EnableInt Ref0000
+A text size 64 flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\MYDOCU~1\PSOCDE~1.1PR\project1\project1\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline 1C 0
+dbline 1D 0
+dbline 20 2
+dbline 23 7
+dbline 27 E
+dbline 2A 15
+dbline 30 1E
+dbline 31 1E
+dbline 34 2A
+dbline 35 2A
+dbline 3B 34
+dbline 3D 3A
+dbline 3E 3A
+dbline 40 3F
+dbline 42 42
+dbline 44 44
+dbline 46 4D
+dbline 47 4D
+dbline 49 52
+dbline 4C 54
+dbline 4D 54
+dbline 4F 59
+dbline 51 5C
+dbline 52 5C
+dbline 53 5C
+dbline 2E 5C
+dbline FFFFFFFE 5E
+dbline 0 5E
+dbfunc e LEDFlashTimer_ISR_C 60 fV
+dbline FFFFFFFF 60
+dbline 57 60
+dbline 59 60
+dbline FFFFFFFE 63
+dbline 0 63
+S _main Def0000
+S _LEDFlashTimer_ISR_C Def0060
+A data size 1 flags 20
+dbfile C:\DOCUME~1\vwadhwa\MYDOCU~1\PSOCDE~1.1PR\project1\project1\main.c
+dbsym e ucVR_ADCResult 0 c
+S _ucVR_ADCResult Def0000
+T 00 00 71 01 10 7C 00 00 20 10 50 03 7C 00 00 20
+R 00 00 00 00 02 06 00 03 02 0D 00 06
+T 00 0E 10 50 03 7C 00 00 20 10 50 00 7C 00 00 20
+R 00 00 00 00 02 06 00 04 02 0D 00 02
+T 00 1C 80 3F 10 7C 00 00 62 D0 00 00 20 39 00 A0
+R 00 00 00 00 02 06 00 05 43 0A 00 00
+T 00 29 33 10 7C 00 00 20 62 D0 00 00 53 00 00 50
+R 00 00 00 00 02 05 00 07 41 0A 00 01 01 0D 00 01
+T 00 35 55 3A 00 00 C0 0B 10 7C 00 00 20 41 00 FE
+R 00 00 00 00 01 04 00 01 02 0A 00 01
+T 00 42 80 19 62 D0 00 00 50 AA 3A 00 00 C0 08 10
+R 00 00 00 00 41 06 00 01 01 0B 00 01
+T 00 4E 7C 00 00 20 80 09 10 7C 00 00 20 43 00 01
+R 00 00 00 00 02 03 00 08 02 0A 00 01
+T 00 5C 8F C1 8F FF 45 00 01 7E
+R 00 00 00 00
+T 00 00 00
+R 00 00 00 01

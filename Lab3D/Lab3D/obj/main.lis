@@ -1,0 +1,141 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bSwitchState::
+ 0000 00                .byte 0
+ 0001                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+ 0001                   .dbsym e bSwitchState _bSwitchState c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab3D\Lab3D\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 10
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; extern char bSwitchState=0;
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 13
+ 0000           ;       // M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 0000           ;       // Insert your main routine code here.
+ 0000           ;       PWM8_1_Start();
+ 0000 10                push X
+ 0001 7C0000            xcall _PWM8_1_Start
+ 0004                   .dbline 14
+ 0004           ;       LCD_1_Start();
+ 0004 7C0000            xcall _LCD_1_Start
+ 0007                   .dbline 15
+ 0007           ;       LCD_1_Init();
+ 0007 7C0000            xcall _LCD_1_Init
+ 000A 20                pop X
+ 000B                   .dbline 16
+ 000B           ;       LCD_1_Position(0,0);
+ 000B 10                push X
+ 000C 5000              mov A,0
+ 000E 5C                mov X,A
+ 000F 7C0000            xcall _LCD_1_Position
+ 0012 20                pop X
+ 0013                   .dbline 17
+ 0013           ;       LCD_1_PrHexByte(PWM8_1_PULSE_WIDTH);
+ 0013 10                push X
+ 0014 5080              mov A,-128
+ 0016 7C0000            xcall _LCD_1_PrHexByte
+ 0019 20                pop X
+ 001A 805D              xjmp L3
+ 001C           L5:
+ 001C                   .dbline 21
+ 001C           ;       while(1)
+ 001C           ;       {
+ 001C           ;               while((INT_CLR0 & 0x40)==0)//wait till set
+ 001C           ;               {
+ 001C                   .dbline 22
+ 001C           ;               }
+ 001C           L6:
+ 001C                   .dbline 20
+ 001C 5DDA              mov A,REG[0xda]
+ 001E 62D000            mov REG[0xd0],>__r0
+ 0021 5300              mov [__r0],A
+ 0023 470040            tst [__r0],64
+ 0026 AFF5              jz L5
+ 0028                   .dbline 23
+ 0028           ;               INT_CLR0 &= ~0x40;//Clear
+ 0028 41DABF            and REG[0xda],-65
+ 002B                   .dbline 26
+ 002B           ;               
+ 002B           ;               
+ 002B           ;               bSwitchState<<=1;
+ 002B 62D000            mov REG[0xd0],>_bSwitchState
+ 002E 6500              asl [_bSwitchState]
+ 0030                   .dbline 27
+ 0030           ;               bSwitchState&=0x70;
+ 0030 260070            and [_bSwitchState],112
+ 0033                   .dbline 28
+ 0033           ;               bSwitchState|=(PRT1DR &0x08);
+ 0033 5D04              mov A,REG[0x4]
+ 0035 62D000            mov REG[0xd0],>__r0
+ 0038 5300              mov [__r0],A
+ 003A 260008            and [__r0],8
+ 003D 62D000            mov REG[0xd0],>_bSwitchState
+ 0040 5100              mov A,[_bSwitchState]
+ 0042 62D000            mov REG[0xd0],>__r0
+ 0045 2A00              or A,[__r0]
+ 0047 62D000            mov REG[0xd0],>_bSwitchState
+ 004A 5300              mov [_bSwitchState],A
+ 004C                   .dbline 30
+ 004C           ;               
+ 004C           ;               if(bSwitchState==0x38)
+ 004C 3C0038            cmp [_bSwitchState],56
+ 004F B028              jnz L8
+ 0051                   .dbline 31
+ 0051           ;               {
+ 0051                   .dbline 32
+ 0051           ;                       PWM8_1_WritePulseWidth((PWM8_1_bReadPulseWidth()+ 1));
+ 0051 10                push X
+ 0052 7C0000            xcall _PWM8_1_bReadPulseWidth
+ 0055 62D000            mov REG[0xd0],>__r0
+ 0058 20                pop X
+ 0059 5300              mov [__r0],A
+ 005B 060001            add [__r0],1
+ 005E 10                push X
+ 005F 5100              mov A,[__r0]
+ 0061 7C0000            xcall _PWM8_1_WritePulseWidth
+ 0064 20                pop X
+ 0065                   .dbline 33
+ 0065           ;                       LCD_1_Position(0,0);
+ 0065 10                push X
+ 0066 5000              mov A,0
+ 0068 5C                mov X,A
+ 0069 7C0000            xcall _LCD_1_Position
+ 006C                   .dbline 34
+ 006C           ;                       LCD_1_PrHexByte(PWM8_1_bReadPulseWidth());
+ 006C 7C0000            xcall _PWM8_1_bReadPulseWidth
+ 006F 62D000            mov REG[0xd0],>__r0
+ 0072 20                pop X
+ 0073 10                push X
+ 0074 7C0000            xcall _LCD_1_PrHexByte
+ 0077 20                pop X
+ 0078                   .dbline 35
+ 0078           ;               }
+ 0078           L8:
+ 0078                   .dbline 36
+ 0078           ;       }
+ 0078           L3:
+ 0078                   .dbline 18
+ 0078 8FA3              xjmp L6
+ 007A           X0:
+ 007A                   .dbline -2
+ 007A           L1:
+ 007A                   .dbline 0 ; func end
+ 007A 8FFF              jmp .
+ 007C                   .dbend

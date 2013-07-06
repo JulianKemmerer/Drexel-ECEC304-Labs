@@ -1,0 +1,82 @@
+XH
+H 2 areas 8 global symbols
+M main.c
+S __r0 Ref0000
+S _VR_ADC_GetSamples Ref0000
+S _VR_ADC_Start Ref0000
+S _VR_ADC_fIsDataAvailable Ref0000
+S _VR_PGA_Start Ref0000
+S _VR_ADC_bClearFlagGetData Ref0000
+A text size 81 flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\Desktop\project1\project1\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline 21 0
+dbline 22 0
+dbline 25 2
+dbline 29 9
+dbline 2C 10
+dbline 32 19
+dbline 33 19
+dbline 36 25
+dbline 37 25
+dbline 3D 2F
+dbline 3F 35
+dbline 40 35
+dbline 41 38
+dbline 42 3B
+dbline 43 3E
+dbline 44 41
+dbline 46 43
+dbline 47 4C
+dbline 48 4C
+dbline 49 4F
+dbline 4A 52
+dbline 4B 55
+dbline 4C 58
+dbline 4D 5A
+dbline 4E 63
+dbline 4F 63
+dbline 50 66
+dbline 51 69
+dbline 52 6C
+dbline 53 6F
+dbline 55 71
+dbline 56 71
+dbline 57 74
+dbline 58 77
+dbline 59 7A
+dbline 5A 7D
+dbline 5B 7D
+dbline 5D 7D
+dbline 30 7D
+dbline FFFFFFFE 7F
+dbline 0 7F
+S _main Def0000
+A data size 1 flags 20
+dbfile C:\DOCUME~1\vwadhwa\Desktop\project1\project1\main.c
+dbsym e ucVR_ADCResult 0 c
+S _ucVR_ADCResult Def0000
+T 00 00 71 01 10 50 03 7C 00 00 20 10 50 03 7C
+R 00 00 00 00 02 08 00 04
+T 00 0D 00 00 20 10 50 00 7C 00 00 20 80 65 10 7C
+R 00 00 00 00 02 02 00 02 02 09 00 01
+T 00 1B 00 00 62 D0 00 00 20 39 00 A0 59 10 7C
+R 00 00 00 00 02 02 00 03 43 06 00 00
+T 00 27 00 00 20 62 D0 00 00 53 00 00 50 40 3A
+R 00 00 00 00 02 02 00 05 41 07 00 01 01 0A 00 01
+T 00 32 00 00 C0 0F 43 00 01 41 00 EF 41 00 FB 41
+R 00 00 00 00 01 02 00 01
+T 00 3F 00 F7 80 3B 62 D0 00 00 50 80 3A 00 00 C0
+R 00 00 00 00 41 08 00 01 01 0D 00 01
+T 00 4B 0F 43 00 10 41 00 FE 41 00 FB 41 00 F7 80
+R 00 00 00 00
+T 00 59 24 62 D0 00 00 50 C0 3A 00 00 C0 0F 43 00
+R 00 00 00 00 41 05 00 01 01 0A 00 01
+T 00 65 04 41 00 EF 41 00 FE 41 00 F7 80 0D 43 00
+R 00 00 00 00
+T 00 73 08 41 00 FB 41 00 FE 41 00 EF 8F 9B 8F FF
+R 00 00 00 00
+T 00 00 00
+R 00 00 00 01

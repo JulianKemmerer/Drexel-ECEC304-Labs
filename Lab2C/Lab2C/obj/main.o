@@ -1,0 +1,43 @@
+XH
+H 3 areas 2 global symbols
+M main.c
+A text size 31 flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2C\Lab2C\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline C 0
+dbline E 0
+dbline 10 2
+dbline 11 7
+dbline 12 A
+dbline 15 F
+dbline 16 14
+dbline 19 17
+dbline 1A 1C
+dbline 1C 21
+dbline 1E 21
+dbline 1F 24
+dbline 20 29
+dbline 21 2D
+dbline 1B 2D
+dbline FFFFFFFE 2F
+dbline 0 2F
+S _main Def0000
+A data size 1 flags 20
+dbfile ./main.c
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2C\Lab2C\main.c
+dbsym e bShadow 0 c
+S _bShadow Def0000
+A data size 0 flags 20
+dbfile C:\DOCUME~1\vwadhwa\Desktop\Lab2C\Lab2C\main.c
+T 00 00 00
+R 00 00 00 01
+T 00 00 71 01 71 10 43 04 0F 41 05 F0 70 CF 41 07
+R 00 00 00 00
+T 00 0E F0 71 10 43 E0 10 41 E0 F7 70 CF 62 04 00
+R 00 00 00 00
+T 00 1C 43 E0 40 80 0D 43 FF 08 62 D0 00 00 76
+R 00 00 00 00 41 0C 00 01
+T 00 28 00 00 51 00 00 60 04 8F F3 8F FF
+R 00 00 00 00 01 02 00 01 01 05 00 01
